@@ -1,48 +1,52 @@
 const express = require('express');
 const morgan = require('morgan');
+const bodyParser = require('body-parser');
+const uuid = require('uuid');
+
 
 const  app = express();
 
-let topMovies = [
+
+let topBands = [
 {
-    title: 'Aliens',
-    director: 'James Cameron'
+    name: 'Black Sabbath',
+    origin: 'UK'
 },
 {
-    title: 'Festen',
-    director: 'Thomas Vinterberg'
+    name: 'Exodus',
+    origin: 'US'
 },
 {
-    title: 'Blade Runner',
-    director: 'Ridley Scot'
+    name: 'Igorrr',
+    origin: 'France'
 },
 {
-    title: 'Babette Feast',
-    director: 'Gabriel Axel'
+    name: 'Rammstein',
+    origin: 'Germany'
 },
 {
-    title: 'Breaking the waves',
-    director: 'Lars von Trier'
+    name: 'Opeth',
+    origin: 'Sweden'
 },
 {
-    title: 'Alien',
-    director: 'Ridley Scott'
+    name: 'Ne Obliviscaris',
+    origin: 'Australia'
 },
 {
-    title: 'The Thing',
-    director: 'John Carpenter'
+    name: 'Mayhem',
+    origin: 'Norway'
 },
 {
-    title: 'The Mummy',
-    director: 'Karl Freund'
+    name: 'Mora Prozaka',
+    origin: 'Belarus'
 },
 {
-    title: 'Fargo',
-    director: 'Joel Coen and Ethan Coen'
+    name: 'Vader',
+    origin: 'Poland'
 },
 {
-    title: 'Léolo',
-    director: 'Jean-Claude Lauzon'
+    name: 'Devin Townsend',
+    origin: 'Canada'
 }
 ];
 
@@ -54,12 +58,54 @@ app.use((err, req, res, next) => {
 app.use(morgan('common'));
 
 app.get('/', (req, res) => {
-    res.send('Welcome to my Top 10 movies app!');
+    res.send('Welcome to my metal bands app!');
   });
 
-app.get('/movies', (req, res) => {
-    res.json(topMovies);
+
+//Get array of all bands
+app.get('/bands', (req, res) => {
+    res.json(topBands);
   });
+
+//GET a specific band name
+app.get('/bands/:bandName', (req, res) => {
+  res.send('Successful GET request returning data on one specific band');
+});
+
+//GET full list of genres
+  app.get('/genres/:genre', (req, res) => {
+    res.send('Successful GET request returning data on all genres in metal bands app');
+  });
+
+//GET information about specific band
+app.get('/bands/:bandInfo', (req, res) => {
+    res.send('Successful GET request returning data on information on a specific band');
+  });
+
+//Post information on a new user
+app.post('/register', (req, res) => {
+    res.send('Successful POST request add new user in metal bands db');
+  });
+
+//Update user information
+app.put('/users/:ID/:infoUpdate/:newValue', (req, res) => {
+    res.send('Successful PUT request update user inoformation');
+  });
+
+//Post a new band to  user specific user profile
+app.post('/users/:ID/favorites/:newFavorite', (req, res) => {
+    res.send('Successful POST request Add a band to a specific user profile');
+  });
+
+//Delete a user from app
+app.delete('/users/:id/unregister', (req, res) => {
+  res.send('Successful DELETE request remove user from app');
+});
+
+//Delete a user from app
+app.delete('/users/:ID/favorites/:deleteFavorite', (req, res) => {
+  res.send('Successful DELETE request remove band from user specific favorites');
+});
 
 app.use(express.static('public'));
 

@@ -7,7 +7,340 @@
     <title>MyMovieFlix</title>
 </head>
 <body>
-    <h1>Documentation for My Movie API</h1>
-    <p>This document will outline the technicalities of my movie site.</p>
+    <h1>Documentation for My Metal Bands API</h1>
+    <p>This document will outline the technicalities of My Metal Bands site.</p>
+
+    <table><thead>
+        <tr>
+            <th>request</th>
+            <th>url</th>
+            <th>response</th>
+        </tr>
+    </thead>
+  <tbody>
+      <tr>
+          <td>GET request</td>
+          <td>/bands</td>
+          <td>return array of all bands</td>
+      </tr>
+      <tr>
+          <td>GET request</td>
+          <td>/bands/:bandName</td>
+          <td>return band by name</td>
+      </tr>
+      <tr>
+          <td>GET request</td>
+          <td>/genres/:genre</td>
+          <td>return information about a specific band genre</td>
+      </tr>
+      <tr>
+          <td>GET request</td>
+          <td>/bands/:bandInfo</td>
+          <td>return information about specific band</td>
+      </tr>
+      <tr>
+          <td>POST request</td>
+          <td>/register</td>
+          <td>register to the web application</td>
+      </tr>
+      <tr>
+          <td>PUT request</td>
+          <td>/users/:ID/:infoUpdate/:newValue</td>
+          <td>Update the user username information</td>
+      </tr>
+      <tr>
+          <td>POST request</td>
+          <td>/users/:ID/favorites/:newFavorite</td>
+          <td>Add a band to a specific user's profile</td>
+      </tr>
+      <tr>
+          <td>DELETE request</td>
+          <td>/users/:id/unregister</td>
+          <td>Unregister a user from the database</td>
+      </tr>
+      <tr>
+          <td>DELETE request</td>
+          <td>/users/:ID/favorites/:deleteFavorite</td>
+          <td>Delete a band from the users favorites</td>
+      </tr>
+  </tbody></table>
+
+    <h1>API Documentation details</h1>
+
+    <h2>Get all Bands</h2>
+    <p>Get an array of all bands</p>
+
+    <h3>Endpoint URL</h3>
+    <p>/Bands</p>
+
+    <h3>Method type</h3>
+    <p>GET</p>
+
+    <h3>Query parameters </h3>
+    <p></p>
+
+    <h3>Format of data expected in the body of the request</h3>
+    <p>JSon</p>
+
+    <h3>Format of the response data</h3>
+    <p></p>
+
+    <h3>Request example</h3>
+    <p></p>
+
+    <h3>Response example</h3>
+    <p>[
+        {
+            "name": "Black Sabbath",
+            "origin": "UK"
+        },
+        {
+            "name": "Exodus",
+            "origin": "US"
+        },
+        {
+            "name": "Igorrr",
+            "origin": "France"
+        },
+        {
+            "name": "Rammstein",
+            "origin": "Germany"
+        },
+        {
+            "name": "Opeth",
+            "origin": "Sweden"
+        },
+        {
+            "name": "Ne Obliviscaris",
+            "origin": "Australia"
+        },
+        {
+            "name": "Mayhem",
+            "origin": "Norway"
+        },
+        {
+            "name": "Mora Prozaka",
+            "origin": "Belarus"
+        },
+        {
+            "name": "Vader",
+            "origin": "Poland"
+        },
+        {
+            "name": "Devin Townsend",
+            "origin": "Canada"
+        }
+    ]</p>
+
+    <hr>
+
+    <h2>Get Band Name</h2>
+    <p>Get a specific band name</p>
+
+    <h3>Endpoint URL</h3>
+    <p>/bands/:bandName</p>
+
+    <h3>Method type</h3>
+    <p>GET</p>
+
+    <h3>Query parameters </h3>
+    <p></p>
+
+    <h3>Format of data expected in the body of the request</h3>
+    <p></p>
+
+    <h3>Format of the response data</h3>
+    <p></p>
+
+    <h3>Request example</h3>
+    <p></p>
+
+    <h3>Response example</h3>
+    <p></p>
+
+    <hr>
+
+    <h2>Get all Genres</h2>
+    <p>Get a list of all Genres</p>
+
+    <h3>Endpoint URL</h3>
+    <p>/genres/:genre</p>
+
+    <h3>Method type</h3>
+    <p>GET</p>
+
+    <h3>Query parameters </h3>
+    <p></p>
+
+    <h3>Format of data expected in the body of the request</h3>
+    <p></p>
+
+    <h3>Format of the response data</h3>
+    <p></p>
+
+    <h3>Request example</h3>
+    <p></p>
+
+    <h3>Response example</h3>
+    <p></p>
+
+    <hr>
+
+   <h2>Band detailed information</h2>
+    <p>Get detailed information on a specific band</p>
+
+    <h3>Endpoint URL</h3>
+    <p>/bands/:bandInfo</p>
+
+    <h3>Method type</h3>
+    <p>GET</p>
+
+    <h3>Query parameters </h3>
+    <p></p>
+
+    <h3>Format of data expected in the body of the request</h3>
+    <p></p>
+
+    <h3>Format of the response data</h3>
+    <p></p>
+
+    <h3>Request example</h3>
+    <p></p>
+
+    <h3>Response example</h3>
+    <p></p>
+
+    <hr>
+
+   <h2>Register new user</h2>
+    <p>Post a new user to the DB</p>
+
+    <h3>Endpoint URL</h3>
+    <p>/register</p>
+
+    <h3>Method type</h3>
+    <p>POST</p>
+
+    <h3>Query parameters </h3>
+    <p></p>
+
+    <h3>Format of data expected in the body of the request</h3>
+    <p></p>
+
+    <h3>Format of the response data</h3>
+    <p></p>
+
+    <h3>Request example</h3>
+    <p></p>
+
+    <h3>Response example</h3>
+    <p></p>
+
+    <hr>
+
+   <h2>Update user</h2>
+    <p>Update user information</p>
+
+    <h3>Endpoint URL</h3>
+    <p>/users/:ID/:infoUpdate/:newValue</p>
+
+    <h3>Method type</h3>
+    <p>PUT</p>
+
+    <h3>Query parameters </h3>
+    <p></p>
+
+    <h3>Format of data expected in the body of the request</h3>
+    <p></p>
+
+    <h3>Format of the response data</h3>
+    <p></p>
+
+    <h3>Request example</h3>
+    <p></p>
+
+    <h3>Response example</h3>
+    <p></p>
+
+    <hr>
+
+   <h2>Add band to favorite</h2>
+    <p>Add a specific band to a user favorites</p>
+
+    <h3>Endpoint URL</h3>
+    <p>/users/:ID/favorites/:newFavorite</p>
+
+    <h3>Method type</h3>
+    <p>POST</p>
+
+    <h3>Query parameters </h3>
+    <p></p>
+
+    <h3>Format of data expected in the body of the request</h3>
+    <p></p>
+
+    <h3>Format of the response data</h3>
+    <p></p>
+
+    <h3>Request example</h3>
+    <p></p>
+
+    <h3>Response example</h3>
+    <p></p>
+
+    <hr>
+
+   <h2>Unregister user</h2>
+    <p>Delete a user from DB</p>
+
+    <h3>Endpoint URL</h3>
+    <p>/users/:id/unregister</p>
+
+    <h3>Method type</h3>
+    <p>DELETE</p>
+
+    <h3>Query parameters </h3>
+    <p></p>
+
+    <h3>Format of data expected in the body of the request</h3>
+    <p></p>
+
+    <h3>Format of the response data</h3>
+    <p></p>
+
+    <h3>Request example</h3>
+    <p></p>
+
+    <h3>Response example</h3>
+    <p></p>
+
+    <hr>
+
+   <h2>Remove band from favorites</h2>
+    <p>Delete a band from user favorites</p>
+
+    <h3>Endpoint URL</h3>
+    <p>/users/:ID/favorites/:deleteFavorite</p>
+
+    <h3>Method type</h3>
+    <p>DELETE</p>
+
+    <h3>Query parameters </h3>
+    <p></p>
+
+    <h3>Format of data expected in the body of the request</h3>
+    <p></p>
+
+    <h3>Format of the response data</h3>
+    <p></p>
+
+    <h3>Request example</h3>
+    <p></p>
+
+    <h3>Response example</h3>
+    <p></p>
+
+    <hr>
+
 </body>
 </html>
