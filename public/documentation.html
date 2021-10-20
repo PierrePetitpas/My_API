@@ -29,40 +29,60 @@
           <td>return band by name</td>
       </tr>
       <tr>
+        <td>GET request</td>
+        <td>/genres</td>
+        <td>return array of all bands</td>
+    </tr>
+      <tr>
           <td>GET request</td>
           <td>/genres/:genre</td>
           <td>return information about a specific band genre</td>
       </tr>
       <tr>
           <td>GET request</td>
-          <td>/bands/:bandInfo</td>
-          <td>return information about specific band</td>
+          <td>/labels/:labelInfo</td>
+          <td>return information about specific label</td>
       </tr>
       <tr>
+        <td>GET request</td>
+        <td>/users</td>
+        <td>return array of all users</td>
+    </tr>
+      <tr>
           <td>POST request</td>
-          <td>/register</td>
-          <td>register to the web application</td>
+          <td>/users</td>
+          <td>register a new user to the web application</td>
       </tr>
       <tr>
           <td>PUT request</td>
-          <td>/users/:ID/:infoUpdate/:newValue</td>
-          <td>Update the user username information</td>
+          <td>//users/:username</td>
+          <td>Update the user information</td>
       </tr>
       <tr>
           <td>POST request</td>
-          <td>/users/:ID/favorites/:newFavorite</td>
+          <td>/users/:username/bands/:bandID</td>
           <td>Add a band to a specific user's profile</td>
       </tr>
       <tr>
           <td>DELETE request</td>
-          <td>/users/:id/unregister</td>
+          <td>/users/:username</td>
           <td>Unregister a user from the database</td>
       </tr>
       <tr>
           <td>DELETE request</td>
-          <td>/users/:ID/favorites/:deleteFavorite</td>
+          <td>/users/:username/bands/:bandID</td>
           <td>Delete a band from the users favorites</td>
       </tr>
+      <tr>
+        <td>POST request</td>
+        <td>/bands</td>
+        <td>Add a new band</td>
+    </tr>
+    <tr>
+        <td>DELETE request</td>
+        <td>/bands/:bandname</td>
+        <td>Delete a band</td>
+    </tr>
   </tbody></table>
 
     <h1>API Documentation details</h1>
@@ -77,7 +97,7 @@
     <p>GET</p>
 
     <h3>Query parameters </h3>
-    <p></p>
+    <p>/bands</p>
 
     <h3>Format of data expected in the body of the request</h3>
     <p>JSon</p>
@@ -312,7 +332,7 @@
 
     <hr>
 
-    <h2>Get Band Name</h2>
+    <h2>Get Specific Band</h2>
     <p>Get a specific band name information</p>
 
     <h3>Endpoint URL</h3>
@@ -379,7 +399,7 @@
     <p>Get a list of all Genres</p>
 
     <h3>Endpoint URL</h3>
-    <p>/genres/:genre</p>
+    <p>/genres</p>
 
     <h3>Method type</h3>
     <p>GET</p>
@@ -391,18 +411,90 @@
     <p></p>
 
     <h3>Format of the response data</h3>
-    <p></p>
+    <p>
+        Name: {type: String, required: true},
+        Description: {type: String, required: true}
+    </p>
 
     <h3>Request example</h3>
     <p></p>
 
     <h3>Response example</h3>
-    <p></p>
+    <p>[
+        {
+            "Favorites": [],
+            "_id": "616eb3c9223d39d7d782350f",
+            "Name": "Avant-garde Metal",
+            "Description": "Avant-garde metal (also known as avant-metal, experimental metal, and experimetal) is a subgenre of heavy metal music loosely defined by use of experimentation and innovative, avant-garde elements, including non-standard and unconventional sounds, instruments, song structures, playing styles, and vocal techniques."
+        },
+        {
+            "Favorites": [],
+            "_id": "616eb4bb223d39d7d7823510",
+            "Name": "Heavy Metal",
+            "Description": "Heavy metal (or simply metal) is a genre of rock music that developed in the late 1960s and early 1970s, largely in the United Kingdom and the United States. With roots in blues rock, psychedelic rock, and acid rock, heavy metal bands developed a thick, massive sound, characterized by distortion, extended guitar solos, emphatic beats, and loudness."
+        },
+        {
+            "Favorites": [],
+            "_id": "616eb4cc223d39d7d7823511",
+            "Name": "Progressive Metal",
+            "Description": "Progressive metal (sometimes shortened to prog metal) is a broad fusion music genre melding heavy metal and progressive rock, combining the loud aggression and amplified guitar-driven sound of the former with the more experimental, cerebral or pseudo-classical compositions of the latter."
+        },
+        {
+            "Favorites": [],
+            "_id": "616eb4e1223d39d7d7823512",
+            "Name": "Thrash Metal",
+            "Description": "Thrash metal (or simply thrash) is an extreme subgenre of heavy metal music characterized by its overall aggression and often fast tempo."
+        },
+        {
+            "Favorites": [],
+            "_id": "616eb4f2223d39d7d7823513",
+            "Name": "Black Metal",
+            "Description": "Black metal is an extreme subgenre of heavy metal music. Common traits include fast tempos, a shrieking vocal style, heavily distorted guitars played with tremolo picking, raw (lo-fi) recording, unconventional song structures, and an emphasis on atmosphere. Artists often appear in corpse paint and adopt pseudonyms."
+        },
+        {
+            "Favorites": [],
+            "_id": "616eb501223d39d7d7823514",
+            "Name": "Technical death metal",
+            "Description": "Technical death metal (also referred to as tech-death) is a musical subgenre of death metal that began and developed in the early- to mid-1990s, with particular focus on challenging, demanding instrumental skill and complex songwriting."
+        }
+    ]</p>
 
     <hr>
+ 
+    <h2>Get information on one Genre</h2>
+    <p>Get detailed information on a specific genre</p>
 
-    <h2>Music Label detailed information</h2>
-    <p>Get detailed information on a specific band</p>
+    <h3>Endpoint URL</h3>
+    <p>/genres/:genreName</p>
+
+    <h3>Method type</h3>
+    <p>GET</p>
+
+    <h3>Query parameters </h3>
+    <p></p>
+
+    <h3>Format of data expected in the body of the request</h3>
+    <p>json</p>
+
+    <h3>Format of the response data</h3>
+    <p>
+        Name: {type: String, required: true},
+        Description: {type: String, required: true}
+    </p>
+
+    <h3>Request example</h3>
+    <p></p>
+
+    <h3>Response example</h3>
+    <p>{
+        "_id": "616eb3c9223d39d7d782350f",
+        "Name": "Avant-garde Metal",
+        "Description": "Avant-garde metal (also known as avant-metal, experimental metal, and experimetal) is a subgenre of heavy metal music loosely defined by use of experimentation and innovative, avant-garde elements, including non-standard and unconventional sounds, instruments, song structures, playing styles, and vocal techniques."
+    }</p>
+
+    <hr>
+    <h2>Get information on one Label</h2>
+    <p>Get detailed information on a specific label</p>
 
     <h3>Endpoint URL</h3>
     <p>/labels/:labelInfo</p>
@@ -414,20 +506,131 @@
     <p></p>
 
     <h3>Format of data expected in the body of the request</h3>
-    <p></p>
+    <p>json</p>
 
     <h3>Format of the response data</h3>
-    <p></p>
+    <p>
+        Name: {type: String, required: true},
+        Bio: {type: String, required: true},
+        Creation: Number,
+        Country: String
+    </p>
 
     <h3>Request example</h3>
     <p></p>
 
     <h3>Response example</h3>
-    <p></p>
+    <p>{
+        "_id": "616eb626223d39d7d7823515",
+        "Name": "Metal Blades Records",
+        "Bio": "Metal Blade Records is a heavy metal independent record label founded by Brian Slagel in 1982.",
+        "Creation": "1982",
+        "Country": "US"
+    }</p>
 
     <hr>
 
-   <h2>Register new user</h2>
+    <h2>Get all users</h2>
+    <p>Get information on all users</p>
+
+    <h3>Endpoint URL</h3>
+    <p>/users'</p>
+
+    <h3>Method type</h3>
+    <p>GET</p>
+
+    <h3>Query parameters </h3>
+    <p></p>
+
+    <h3>Format of data expected in the body of the request</h3>
+    <p>json</p>
+
+    <h3>Format of the response data</h3>
+    <p>
+        Username: {type: String, require: true},
+        Firstname: String,
+        Lastname: String,
+        Password: {type: String, require: true},
+        Email: {type: String, require: true},
+        DOB: Date,
+        Favorites: [{type: mongoose.Schema.Types.ObjectId, ref: 'Band'}]
+    </p>
+
+    <h3>Request example</h3>
+    <p></p>
+
+    <h3>Response example</h3>
+    <p>[
+        {
+            "_id": "616e732221ba485f30a1cd91",
+            "Username": "Pierrep",
+            "Firstname": "Pierre",
+            "Lastname": "Petitpas",
+            "Password": "Pass12345",
+            "Email": "pp@live.com",
+            "DOB": "1970-11-05T00:00:00.000Z",
+            "Favorites": [
+                "616e709d064a3fd1e2ac764e",
+                "616e70c8064a3fd1e2ac7650"
+            ]
+        },
+        {
+            "_id": "616e733c21ba485f30a1cd92",
+            "Username": "Evag",
+            "Firstname": "Eva",
+            "Lastname": "Gunnarsson",
+            "Password": "Pass12345",
+            "Email": "evag@live.com",
+            "DOB": "1992-02-20T00:00:00.000Z",
+            "Favorites": [
+                "616d7c58a3ba0aadbef84583",
+                "616e6e0c86671ea245b4418a"
+            ]
+        },
+        {
+            "_id": "616e734c21ba485f30a1cd93",
+            "Username": "JohnD",
+            "Firstname": "John",
+            "Lastname": "Doe",
+            "Password": "Pass12345",
+            "Email": "john_doeg@live.com",
+            "DOB": "2000-05-10T00:00:00.000Z",
+            "Favorites": [
+                "616e6e0c86671ea245b4418a",
+                "616e709d064a3fd1e2ac764e",
+                "616d7c58a3ba0aadbef84583",
+                "616e70b6064a3fd1e2ac764f",
+                "616e7103064a3fd1e2ac7653"
+            ]
+        },
+        {
+            "_id": "616e735e21ba485f30a1cd94",
+            "Username": "JanneD",
+            "Firstname": "Janne",
+            "Lastname": "Doe",
+            "Password": "Pass12345",
+            "Email": "janneDg@live.com",
+            "DOB": "2989-10-01T00:00:00.000Z",
+            "Favorites": [
+                "616e6e0c86671ea245b4418a"
+            ]
+        },
+        {
+            "_id": "616fe79f737c81daffa184cb",
+            "Username": "Testuser1",
+            "Firstname": "Test1",
+            "Lastname": "Test2",
+            "Password": "Pass12345",
+            "Email": "testtest@live.com",
+            "Favorites": [],
+            "__v": 0
+        }
+    ]</p>
+
+    <hr>
+
+
+   <h2>Add new user</h2>
     <p>Post a new user to the DB</p>
 
     <h3>Endpoint URL</h3>
@@ -440,16 +643,52 @@
     <p></p>
 
     <h3>Format of data expected in the body of the request</h3>
-    <p></p>
+    <p>
+        Username: {type: String, require: true},
+        Firstname: String,
+        Lastname: String,
+        Password: {type: String, require: true},
+        Email: {type: String, require: true},
+        DOB: Date,
+        Favorites: [{type: mongoose.Schema.Types.ObjectId, ref: 'Band'}]
+    </p>
 
     <h3>Format of the response data</h3>
-    <p></p>
+    <p>
+        Username: {type: String, require: true},
+        Firstname: String,
+        Lastname: String,
+        Password: {type: String, require: true},
+        Email: {type: String, require: true},
+        DOB: Date,
+        Favorites: [{type: mongoose.Schema.Types.ObjectId, ref: 'Band'}]
+    </p>
 
     <h3>Request example</h3>
-    <p></p>
+    <p>
+        {
+            "Username" : "Testuser1",
+            "FirstName" : "Test1",
+            "LastName" : "Test2",
+            "Password" : "Pass12345",
+            "Email" : "testtest@live.com",
+            "DOB" : "05/11/1989"
+        }
+    </p>
 
     <h3>Response example</h3>
-    <p></p>
+    <p>
+        {
+            "Username": "Testuser1",
+            "Firstname": "Test1",
+            "Lastname": "Test2",
+            "Password": "Pass12345",
+            "Email": "testtest@live.com",
+            "Favorites": [],
+            "_id": "616fe79f737c81daffa184cb",
+            "__v": 0
+        }
+    </p>
 
     <hr>
 
@@ -457,7 +696,7 @@
     <p>Update user information</p>
 
     <h3>Endpoint URL</h3>
-    <p>/users/:ID/:infoUpdate/:newValue</p>
+    <p>/users/:usernameS</p>
 
     <h3>Method type</h3>
     <p>PUT</p>
@@ -466,16 +705,50 @@
     <p></p>
 
     <h3>Format of data expected in the body of the request</h3>
-    <p></p>
+    <p>
+        Username: {type: String, require: true},
+        Firstname: String,
+        Lastname: String,
+        Password: {type: String, require: true},
+        Email: {type: String, require: true},
+        DOB: Date
+    </p>
 
     <h3>Format of the response data</h3>
-    <p></p>
+    <p>
+        Username: {type: String, require: true},
+        Firstname: String,
+        Lastname: String,
+        Password: {type: String, require: true},
+        Email: {type: String, require: true},
+        DOB: Date
+    </p>
 
     <h3>Request example</h3>
-    <p></p>
+    <p>
+        {
+            "Username" : "Testuser12",
+            "FirstName" : "Test145",
+            "LastName" : "Test244",
+            "Password" : "Pass123456",
+            "Email" : "Ptesttest@live.com",
+            "DOB" : "06/11/1989"
+        }
+    </p>
 
     <h3>Response example</h3>
-    <p></p>
+    <p>
+        {
+            "_id": "616eda8c0259bf76b609051a",
+            "Username": "Testuser12",
+            "Firstname": "Test145",
+            "Lastname": "Test244",
+            "Password": "Pass123456",
+            "Email": "Ptesttest@live.com",
+            "Favorites": [],
+            "__v": 0
+        }
+    </p>
 
     <hr>
 
@@ -483,7 +756,7 @@
     <p>Add a specific band to a user favorites</p>
 
     <h3>Endpoint URL</h3>
-    <p>/users/:ID/favorites/:newFavorite</p>
+    <p>/users/:username/bands/:bandID</p>
 
     <h3>Method type</h3>
     <p>POST</p>
@@ -495,13 +768,35 @@
     <p></p>
 
     <h3>Format of the response data</h3>
-    <p></p>
+    <p>
+        "_id": ID
+        Username: {type: String, require: true},
+        Firstname: String,
+        Lastname: String,
+        Password: {type: String, require: true},
+        Email: {type: String, require: true},
+        DOB: Date,
+        Favorites: [{type: mongoose.Schema.Types.ObjectId, ref: 'Band'}]</p>
 
     <h3>Request example</h3>
     <p></p>
 
     <h3>Response example</h3>
-    <p></p>
+    <p>
+        {
+            "_id": "616e732221ba485f30a1cd91",
+            "Username": "Pierrep",
+            "Firstname": "Pierre",
+            "Lastname": "Petitpas",
+            "Password": "Pass12345",
+            "Email": "pp@live.com",
+            "DOB": "1970-11-05T00:00:00.000Z",
+            "Favorites": [
+                "616e709d064a3fd1e2ac764e",
+                "616e70c8064a3fd1e2ac7650"
+            ]
+        }
+    </p>
 
     <hr>
 
@@ -509,7 +804,33 @@
     <p>Delete a user from DB</p>
 
     <h3>Endpoint URL</h3>
-    <p>/users/:id/unregister</p>
+    <p>/users/:username</p>
+
+    <h3>Method type</h3>
+    <p>DELETE</p>
+
+    <h3>Query parameters </h3>
+    <p></p>
+
+    <h3>Format of data expected in the body of the request</h3>
+    <p>text</p>
+
+    <h3>Format of the response data</h3>
+    <p></p>
+
+    <h3>Request example</h3>
+    <p></p>
+
+    <h3>Response example</h3>
+    <p>Testuser1 was delete</p>
+
+    <hr>
+
+   <h2>Remove band from favorites</h2>
+    <p>Delete a band from user favorites</p>
+
+    <h3>Endpoint URL</h3>
+    <p>/users/:username/bands/:bandID</p>
 
     <h3>Method type</h3>
     <p>DELETE</p>
@@ -530,12 +851,11 @@
     <p></p>
 
     <hr>
-
-   <h2>Remove band from favorites</h2>
+    <h2>Remove band from favorites</h2>
     <p>Delete a band from user favorites</p>
 
     <h3>Endpoint URL</h3>
-    <p>/users/:ID/favorites/:deleteFavorite</p>
+    <p>/users/:username/bands/:bandID</p>
 
     <h3>Method type</h3>
     <p>DELETE</p>
@@ -547,13 +867,112 @@
     <p></p>
 
     <h3>Format of the response data</h3>
-    <p></p>
+    <p>json</p>
 
     <h3>Request example</h3>
     <p></p>
 
     <h3>Response example</h3>
+    <p>
+        {
+            "_id": "616e732221ba485f30a1cd91",
+            "Username": "Pierrep",
+            "Firstname": "Pierre",
+            "Lastname": "Petitpas",
+            "Password": "Pass12345",
+            "Email": "pp@live.com",
+            "DOB": "1970-11-05T00:00:00.000Z",
+            "Favorites": [
+                "616e709d064a3fd1e2ac764e"
+            ]
+        }
+    </p>
+
+    <hr>
+    <h2>Add new band</h2>
+    <p>Add a new band to the collection</p>
+
+    <h3>Endpoint URL</h3>
+    <p>/bands</p>
+
+    <h3>Method type</h3>
+    <p>POST</p>
+
+    <h3>Query parameters </h3>
     <p></p>
+
+    <h3>Format of data expected in the body of the request</h3>
+    <p>json</p>
+
+    <h3>Format of the response data</h3>
+    <p>json</p>
+
+    <h3>Request example</h3>
+    <p>{
+        "Name": "Gaahls Wyrd",
+            "Description": "Gaahls Wyrd is a black metal band based in Bergen, Norway, formed by the former Gorgoroth and God Seed vocalist Gaahl.",
+            "Genre": {
+                "Name": "Black Metal",
+                "Description": "Black metal is an extreme subgenre of heavy metal music. Common traits include fast tempos, a shrieking vocal style, heavily distorted guitars played with tremolo picking, raw (lo-fi) recording, unconventional song structures, and an emphasis on atmosphere. Artists often appear in corpse paint and adopt pseudonyms."
+            },
+            "Label": {
+                "Name": "Season of Mist",
+                "Bio": "Season of Mist is an independent record label and record distributor with subsidiaries in France and the United States. The record label was founded in 1996 by Michael S. Berberian in Marseille, France.",
+                "Creation": 1996,
+                "Country": "France"
+            },
+                "Country": "Norway",
+                "Continent": "Europe",
+                "Creation": "2015",
+                "Imagepath": "https://www.spirit-of-metal.com/les%20goupes/G/Gaahls%20Wyrd/pics/1510923_logo.jpg",
+                "Active": "true"
+        }</p>
+
+    <h3>Response example</h3>
+    <p>{
+        "Name": "Gaahls Wyrd",
+        "Description": "Gaahls Wyrd is a black metal band based in Bergen, Norway, formed by the former Gorgoroth and God Seed vocalist Gaahl.",
+        "Genre": {
+            "Name": "Black Metal",
+            "Description": "Black metal is an extreme subgenre of heavy metal music. Common traits include fast tempos, a shrieking vocal style, heavily distorted guitars played with tremolo picking, raw (lo-fi) recording, unconventional song structures, and an emphasis on atmosphere. Artists often appear in corpse paint and adopt pseudonyms."
+        },
+        "Label": {
+            "Name": "Season of Mist",
+            "Bio": "Season of Mist is an independent record label and record distributor with subsidiaries in France and the United States. The record label was founded in 1996 by Michael S. Berberian in Marseille, France.",
+            "Creation": 1996
+        },
+        "Country": "Norway",
+        "Continent": "Europe",
+        "Imagepath": "https://www.spirit-of-metal.com/les%20goupes/G/Gaahls%20Wyrd/pics/1510923_logo.jpg",
+        "Active": true,
+        "_id": "616fe18fe7ecd9adb974b414",
+        "__v": 0
+    }</p>
+
+    <hr>
+    <h2>Remove band</h2>
+    <p>Delete a band from collection</p>
+
+    <h3>Endpoint URL</h3>
+    <p>/bands/:bandname</p>
+
+    <h3>Method type</h3>
+    <p>DELETE</p>
+
+    <h3>Query parameters </h3>
+    <p></p>
+
+    <h3>Format of data expected in the body of the request</h3>
+    <p></p>
+
+    <h3>Format of the response data</h3>
+    <p>text</p>
+
+    <h3>Request example</h3>
+    <p></p>
+
+    <h3>Response example</h3>
+    <p>aahls Wyrd was delete</p>
 
     <hr>
 
