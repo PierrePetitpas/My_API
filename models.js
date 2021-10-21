@@ -48,8 +48,8 @@ let userSchema = mongoose.Schema({
 
 
 let Band = mongoose.model('Band', bandSchema);
-let Genre = mongoose.model('Genre', userSchema);
-let Label = mongoose.model('Label', userSchema);
+let Genre = mongoose.model('Genre', genreSchema);
+let Label = mongoose.model('Label', labelSchema);
 let User = mongoose.model('User', userSchema);
 
 
