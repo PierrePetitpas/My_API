@@ -54,6 +54,6 @@ let User = mongoose.model('User', userSchema);
 
 
 module.exports.Band = Band;
-module.exports.User = User;
 module.exports.Genre = Genre;
 module.exports.Label = Label;
+module.exports.User = User;

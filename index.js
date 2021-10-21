@@ -24,6 +24,15 @@ app.use((err, req, res, next) => {
 
 app.use(morgan('common'));
 app.use(bodyParser.json());
+app.use(express.static('public'));
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// ensures that Express is available in your “auth.js” file as well
+let auth = require('./auth')(app);
+
+const passport = require('passport');
+require('./passport');
+
 
 app.get('/', (req, res) => {
     res.send('Welcome to my metal bands app!');
@@ -31,7 +40,7 @@ app.get('/', (req, res) => {
 
 
 //Get array of all bands
-app.get('/bands', (req, res) => {
+app.get('/bands', passport.authenticate('jwt', {session: false}) ,(req, res) => {
     Bands.find()
     .then((bands) => {
       res.status(201).json(bands);
@@ -259,8 +268,6 @@ app.delete('/bands/:bandname', (req, res) => {
       res.status(500).send('Error ' + err);
     });  
 });
-
-app.use(express.static('public'));
 
 app.listen(8080, () => {
     console.log('Your app is listening on port 8080.');
