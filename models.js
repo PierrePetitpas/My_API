@@ -38,9 +38,9 @@ let labelSchema = mongoose.Schema({
 //creating userSchema
 let userSchema = mongoose.Schema({
     Username: {type: String, require: true},
+    Password: {type: String, require: true},
     Firstname: String,
     Lastname: String,
-    Password: {type: String, require: true},
     Email: {type: String, require: true},
     DOB: Date,
     Favorites: [{type: mongoose.Schema.Types.ObjectId, ref: 'Band'}]

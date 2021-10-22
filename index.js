@@ -2,17 +2,20 @@ const express = require('express');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const uuid = require('uuid');
-
 const mongoose = require('mongoose');
 const Models = require('./models.js');
 
+const  app = express();
 const Bands = Models.Band;
 const Genres = Models.Genre;
 const Labels = Models.Label;
 const Users = Models.User;
 
 
-const  app = express();
+app.use(morgan('common'));
+app.use(express.static('public'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 mongoose.connect('mongodb://localhost:27017/myBandsDB', { useNewUrlParser: true, useUnifiedTopology: true });
 
@@ -22,17 +25,13 @@ app.use((err, req, res, next) => {
     res.status(500).send('Something broke!');
   });
 
-app.use(morgan('common'));
-app.use(bodyParser.json());
-app.use(express.static('public'));
-app.use(bodyParser.urlencoded({ extended: true }));
 
 // ensures that Express is available in your “auth.js” file as well
 let auth = require('./auth')(app);
 
 const passport = require('passport');
 require('./passport');
-
+app.use(passport.initialize());
 
 app.get('/', (req, res) => {
     res.send('Welcome to my metal bands app!');
@@ -234,9 +233,9 @@ app.post('/users', (req, res) => {
     } else {
       Users.create({
         Username: req.body.Username,
+        Password: req.body.Password,
         Firstname: req.body.FirstName,
         Lastname: req.body.LastName,
-        Password: req.body.Password,
         Email: req.body.Email,
         DOB: req.body.Birthday
       })
