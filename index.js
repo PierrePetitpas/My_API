@@ -7,8 +7,6 @@ const Models = require('./models.js');
 
 const  app = express();
 const Bands = Models.Band;
-const Genres = Models.Genre;
-const Labels = Models.Label;
 const Users = Models.User;
 
 
@@ -27,11 +25,10 @@ app.use((err, req, res, next) => {
 
 
 // ensures that Express is available in your “auth.js” file as well
-let auth = require('./auth')(app);
-
 const passport = require('passport');
 require('./passport');
 app.use(passport.initialize());
+let auth = require('./auth')(app);
 
 app.get('/', (req, res) => {
     res.send('Welcome to my metal bands app!');
@@ -51,7 +48,7 @@ app.get('/bands', passport.authenticate('jwt', {session: false}) ,(req, res) => 
   });
 
 //GET a specific band name information
-app.get('/bands/:bandName', (req, res) => {
+app.get('/bands/:bandName', passport.authenticate('jwt', {session: false}), (req, res) => {
   Bands.findOne( {Name: req.params.bandName})
   .then((band) => {
     res.status(201).json(band);
@@ -63,20 +60,20 @@ app.get('/bands/:bandName', (req, res) => {
 });
 
 //GET full list of genres
-  app.get('/genres', (req, res) => {
-    Genres.find()
-    .then((genres) => {
-      res.status(201).json(genres);
+/*  app.get('/genres', passport.authenticate('jwt', {session: false}), (req, res) => {
+    Bands.find()
+    .then((band) => {
+      res.status(201).json(band.Genre);
     })
     .catch((err) => {
       console.error(err);
       res.status(500).send('Error: ' + err);
     });
-  });
+  });*/
 
 
 //GET full list of users
-app.get('/users', (req, res) => {
+app.get('/users', passport.authenticate('jwt', {session: false}), (req, res) => {
   Users.find()
   .then((users) => {
     res.status(201).json(users);
@@ -88,10 +85,10 @@ app.get('/users', (req, res) => {
 });
 
   //GET a specific genre name information
-  app.get('/genres/:genreName', (req, res) => {
-    Genres.findOne( {Name: req.params.genreName})
-    .then((genre) => {
-      res.status(201).json(genre);
+  app.get('/genres/:genreName', passport.authenticate('jwt', {session: false}), (req, res) => {
+    Bands.findOne( {'Genre.Name': req.params.genreName})
+    .then((band) => {
+      res.status(201).json(band.Genre);
     })
     .catch((err) => {
       console.error(err);
@@ -101,10 +98,10 @@ app.get('/users', (req, res) => {
 
 
 //GET information about specific Music Label
-app.get('/labels/:labelInfo', (req, res) => {
-  Labels.findOne( {Name: req.params.labelInfo})
-  .then((label) => {
-    res.status(201).json(label);
+app.get('/labels/:labelInfo', passport.authenticate('jwt', {session: false}), (req, res) => {
+  Bands.findOne( {'Label.Name': req.params.labelInfo})
+  .then((band) => {
+    res.status(201).json(band.Label);
   })
   .catch((err) => {
     console.error(err);
@@ -113,7 +110,7 @@ app.get('/labels/:labelInfo', (req, res) => {
 });
 
 //Post a new band
-app.post('/bands', (req, res) => {
+app.post('/bands', passport.authenticate('jwt', {session: false}), (req, res) => {
     Bands.findOne({Name: req.body.Name})
     .then((band) => {
       if (band) {
@@ -152,14 +149,15 @@ app.post('/bands', (req, res) => {
   });
 
 //Update user information
-app.put('/users/:username', (req, res) => {
+app.put('/users/:username', passport.authenticate('jwt', {session: false}), (req, res) => {
+    
     Users.findOneAndUpdate ({ Username: req.params.username}, {
       $set:
       {
         Username: req.body.Username,
+        Password: req.body.Password,
         Firstname: req.body.FirstName,
         Lastname: req.body.LastName,
-        Password: req.body.Password,
         Email: req.body.Email,
         DOB: req.body.Birthday
       }
@@ -176,7 +174,7 @@ app.put('/users/:username', (req, res) => {
   });
 
 //Post a new band to  user specific user profile
-app.post('/users/:username/bands/:bandID', (req, res) => {
+app.post('/users/:username/bands/:bandID', passport.authenticate('jwt', {session: false}), (req, res) => {
     Users.findOneAndUpdate (
       { Username: req.params.username},
       { $push: { Favorites: req.params.bandID}},
@@ -193,7 +191,7 @@ app.post('/users/:username/bands/:bandID', (req, res) => {
   });
 
 //Delete a user from app
-app.delete('/users/:username', (req, res) => {
+app.delete('/users/:username', passport.authenticate('jwt', {session: false}), (req, res) => {
   Users.findOneAndDelete ({ Username: req.params.username})
     .then ((user) => {
       if (!user) {
@@ -209,7 +207,7 @@ app.delete('/users/:username', (req, res) => {
 });
 
 //Delete a favorite from user
-app.delete('/users/:username/bands/:bandID', (req, res) => {
+app.delete('/users/:username/bands/:bandID', passport.authenticate('jwt', {session: false}), (req, res) => {
   Users.findOneAndUpdate({ Username: req.params.username}, {
     $pull: { Favorites: req.params.bandID}
   },
@@ -225,7 +223,8 @@ app.delete('/users/:username/bands/:bandID', (req, res) => {
 });
 
 //Post information on a new user
-app.post('/users', (req, res) => {
+app.post('/users', passport.authenticate('jwt', {session: false}), (req, res) => {
+  let hashedPassword = Users.hashPassword(req.body.Password);
   Users.findOne({Username: req.body.Username})
   .then((user) => {
     if (user) {
@@ -233,7 +232,7 @@ app.post('/users', (req, res) => {
     } else {
       Users.create({
         Username: req.body.Username,
-        Password: req.body.Password,
+        Password: hashedPassword,
         Firstname: req.body.FirstName,
         Lastname: req.body.LastName,
         Email: req.body.Email,
@@ -253,7 +252,7 @@ app.post('/users', (req, res) => {
 });
 
 //Delete a band from app
-app.delete('/bands/:bandname', (req, res) => {
+app.delete('/bands/:bandname', passport.authenticate('jwt', {session: false}), (req, res) => {
   Bands.findOneAndDelete ({ Name: req.params.bandname})
     .then ((band) => {
       if (!band) {

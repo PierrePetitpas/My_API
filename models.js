@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
 //creating bandSchema
 let bandSchema = mongoose.Schema({
@@ -21,20 +22,6 @@ let bandSchema = mongoose.Schema({
     Active: Boolean
 });
 
-//creating genreSchema
-let genreSchema = mongoose.Schema({
-    Name: {type: String, required: true},
-    Description: {type: String, required: true}
-});
-
-//creating lableSchema
-let labelSchema = mongoose.Schema({
-    Name: {type: String, required: true},
-    Bio: {type: String, required: true},
-    Creation: Number,
-    Country: String
-});
-
 //creating userSchema
 let userSchema = mongoose.Schema({
     Username: {type: String, require: true},
@@ -46,14 +33,18 @@ let userSchema = mongoose.Schema({
     Favorites: [{type: mongoose.Schema.Types.ObjectId, ref: 'Band'}]
 });
 
+//Hashing of Password//
+userSchema.statics.hashPassword = (password) => {
+    return bcrypt.hashSync(password, 10);
+  };
+  //Compares Passwords that have been hashed//
+  userSchema.methods.validatePassword = function(password) {
+    return bcrypt.compareSync(password, this.Password);
+  };
 
 let Band = mongoose.model('Band', bandSchema);
-let Genre = mongoose.model('Genre', genreSchema);
-let Label = mongoose.model('Label', labelSchema);
 let User = mongoose.model('User', userSchema);
 
 
 module.exports.Band = Band;
-module.exports.Genre = Genre;
-module.exports.Label = Label;
 module.exports.User = User;
