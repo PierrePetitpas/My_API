@@ -114,7 +114,15 @@ app.get('/labels/:labelInfo', passport.authenticate('jwt', {session: false}), (r
 });
 
 //Post a new band
-app.post('/bands', passport.authenticate('jwt', {session: false}), (req, res) => {
+app.post('/bands',  [
+  check('Name', 'Band name is required').not().isEmpty(),
+  check('Description', 'Description is required').not().isEmpty(),
+  ],  
+  passport.authenticate('jwt', {session: false}), (req, res) => {
+    let errors = validationResult(req);
+    if (!errors.isEmpty()) {
+    return res.status(422).json({ errors: errors.array() });
+    }
     Bands.findOne({Name: req.body.Name})
     .then((band) => {
       if (band) {
@@ -153,7 +161,17 @@ app.post('/bands', passport.authenticate('jwt', {session: false}), (req, res) =>
   });
 
 //Update user information
-app.put('/users/:username', passport.authenticate('jwt', {session: false}), (req, res) => {
+app.put('/users/:username', [
+  check('Username', 'Username Lenght need to have minimum 5 characters').isLength({min: 5}),
+  check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
+  check('Password', 'Password is required').not().isEmpty(),
+  check('Email', 'Email does not appear to be valid').isEmail()
+  ],
+  passport.authenticate('jwt', {session: false}), (req, res) => {
+    let errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() });
+    }
     
     Users.findOneAndUpdate ({ Username: req.params.username}, {
       $set:
@@ -177,8 +195,16 @@ app.put('/users/:username', passport.authenticate('jwt', {session: false}), (req
     });
   });
 
-//Post a new band to  user specific user profile
-app.post('/users/:username/bands/:bandID', passport.authenticate('jwt', {session: false}), (req, res) => {
+//Post a new favorite band to  user specific user profile
+app.post('/users/:username/bands/:bandID',  [
+  check('username', 'Username Lenght need to have minimum 5 characters').isLength({min: 5}),
+  check('username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric()
+  ], 
+   passport.authenticate('jwt', {session: false}), (req, res) => {
+    let errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() });
+    }
     Users.findOneAndUpdate (
       { Username: req.params.username},
       { $push: { Favorites: req.params.bandID}},
@@ -227,7 +253,18 @@ app.delete('/users/:username/bands/:bandID', passport.authenticate('jwt', {sessi
 });
 
 //Post information on a new user
-app.post('/users', passport.authenticate('jwt', {session: false}), (req, res) => {
+app.post('/users',   [
+  check('Username', 'Username Lenght need to have minimum 5 characters').isLength({min: 5}),
+  check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
+  check('Password', 'Password is required').not().isEmpty(),
+  check('Email', 'Email does not appear to be valid').isEmail()
+  ], 
+  passport.authenticate('jwt', {session: false}), (req, res) => {
+    // check the validation object for errors
+  let errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(422).json({ errors: errors.array() });
+  }
   let hashedPassword = Users.hashPassword(req.body.Password);
   Users.findOne({Username: req.body.Username})
   .then((user) => {
