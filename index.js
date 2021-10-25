@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const uuid = require('uuid');
 const mongoose = require('mongoose');
 const Models = require('./models.js');
+const { check, validationResult } = require('express-validator');
 
 const  app = express();
 const Bands = Models.Band;
@@ -28,6 +29,8 @@ app.use((err, req, res, next) => {
 const passport = require('passport');
 require('./passport');
 app.use(passport.initialize());
+const cors = require('cors');
+app.use(cors());
 let auth = require('./auth')(app);
 
 app.get('/', (req, res) => {
@@ -267,7 +270,12 @@ app.delete('/bands/:bandname', passport.authenticate('jwt', {session: false}), (
     });  
 });
 
-app.listen(8080, () => {
+/*app.listen(8080, () => {
     console.log('Your app is listening on port 8080.');
-  });
+  });*/
+
+  const port = process.env.PORT || 8080;
+app.listen(port, '0.0.0.0',() => {
+ console.log('Listening on Port ' + port);
+});
 
