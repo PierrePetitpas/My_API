@@ -16,8 +16,8 @@ app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-//mongoose.connect('mongodb://localhost:27017/myBandsDB', { useNewUrlParser: true, useUnifiedTopology: true });
-mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://localhost:27017/myBandsDB', { useNewUrlParser: true, useUnifiedTopology: true });
+//mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 
 app.use((err, req, res, next) => {
@@ -64,10 +64,10 @@ app.get('/bands/:bandName', passport.authenticate('jwt', {session: false}), (req
 });
 
 //GET full list of genres
-/*  app.get('/genres', passport.authenticate('jwt', {session: false}), (req, res) => {
-    Bands.find()
+/* app.get('/genres', passport.authenticate('jwt', {session: false}), (req, res) => {
+    Bands.find().populate ('Genre.Name')
     .then((band) => {
-      res.status(201).json(band.Genre);
+      res.status(201).json(band);
     })
     .catch((err) => {
       console.error(err);

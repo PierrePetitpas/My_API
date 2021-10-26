@@ -18,6 +18,11 @@
         </tr>
     </thead>
   <tbody>
+    <tr>
+        <td>Login</td>
+        <td>/login</td>
+        <td>Login to the application</td>
+    </tr>
       <tr>
           <td>GET request</td>
           <td>/bands</td>
@@ -28,11 +33,11 @@
           <td>/bands/:bandName</td>
           <td>return band by name</td>
       </tr>
-      <tr>
+    <!--  <tr>
         <td>GET request</td>
         <td>/genres</td>
         <td>return array of all bands</td>
-    </tr>
+    </tr> -->
       <tr>
           <td>GET request</td>
           <td>/genres/:genre</td>
@@ -87,11 +92,62 @@
 
     <h1>API Documentation details</h1>
 
+    <h2>Login</h2>
+    <p>Login to application</p>
+
+    <h3>Endpoint URL</h3>
+    <p>https:/mybands.herokuapp.com/login</p>
+
+    <h3>Method type</h3>
+    <p>GET</p>
+
+    <h3>Query parameters </h3>
+    <p></p>
+
+    <h3>Format of data expected in the body of the request</h3>
+    <p>json</p>
+
+    <h3>Format of the response data</h3>
+    <p>{
+        "user": {
+            "_id": ID,
+            "Username": String,
+            "Password": Hashed String,
+            "Firstname": String,,
+            "Lastname": String,,
+            "Email": Email,
+            "Favorites": Array,
+            "__v": 0
+        },
+        "token": Token
+    </p>
+
+    <h3>Request example</h3>
+    <p></p>
+
+    <h3>Response example</h3>
+    <p>{
+        "user": {
+            "_id": "61767d04577dc980673cf526",
+            "Username": "LoginUser",
+            "Password": "$2b$10$ufhJdnrjQjgPl35NpUQiUeG9t/6QNbd1jPyoZxS57d/s6uwEj1w3y",
+            "Firstname": "Test1",
+            "Lastname": "Test2",
+            "Email": "testtest@live.com",
+            "Favorites": [],
+            "__v": 0
+        },
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTc2N2QwNDU3N2RjOTgwNjczY2Y1MjYiLCJVc2VybmFtZSI6IkxvZ2luVXNlciIsIlBhc3N3b3JkIjoiJDJiJDEwJHVmaEpkbnJqUWpnUGwzNU5wVVFpVWVHOXQvNlFOYmQxalB5b1p4UzU3ZC9zNnV3RWoxdzN5IiwiRmlyc3RuYW1lIjoiVGVzdDEiLCJMYXN0bmFtZSI6IlRlc3QyIiwiRW1haWwiOiJ0ZXN0dGVzdEBsaXZlLmNvbSIsIkZhdm9yaXRlcyI6W10sIl9fdiI6MCwiaWF0IjoxNjM1MjMzMzIyLCJleHAiOjE2MzU4MzgxMjIsInN1YiI6IkxvZ2luVXNlciJ9.clRoVszprHyPpk7tiop8t2btC0LbZcvwaqZY3Olec9I"
+    </p>
+
+    <hr>
+
+
     <h2>Get all Bands</h2>
     <p>Get an array of all bands</p>
 
     <h3>Endpoint URL</h3>
-    <p>/Bands</p>
+    <p>https:/mybands.herokuapp.com/Bands</p>
 
     <h3>Method type</h3>
     <p>GET</p>
@@ -336,7 +392,7 @@
     <p>Get a specific band name information</p>
 
     <h3>Endpoint URL</h3>
-    <p>/bands/:bandName</p>
+    <p>https:/mybands.herokuapp.com/bands/:bandName</p>
 
     <h3>Method type</h3>
     <p>GET</p>
@@ -395,11 +451,11 @@
 
     <hr>
 
-    <h2>Get all Genres</h2>
+    <!--<h2>Get all Genres</h2>
     <p>Get a list of all Genres</p>
 
     <h3>Endpoint URL</h3>
-    <p>/genres</p>
+    <p>https:/mybands.herokuapp.com/genres</p>
 
     <h3>Method type</h3>
     <p>GET</p>
@@ -457,15 +513,15 @@
             "Name": "Technical death metal",
             "Description": "Technical death metal (also referred to as tech-death) is a musical subgenre of death metal that began and developed in the early- to mid-1990s, with particular focus on challenging, demanding instrumental skill and complex songwriting."
         }
-    ]</p>
+    ]</p> 
 
-    <hr>
+    <hr> -->
  
     <h2>Get information on one Genre</h2>
     <p>Get detailed information on a specific genre</p>
 
     <h3>Endpoint URL</h3>
-    <p>/genres/:genreName</p>
+    <p>https:/mybands.herokuapp.com/genres/:genreName</p>
 
     <h3>Method type</h3>
     <p>GET</p>
@@ -497,7 +553,7 @@
     <p>Get detailed information on a specific label</p>
 
     <h3>Endpoint URL</h3>
-    <p>/labels/:labelInfo</p>
+    <p>https:/mybands.herokuapp.com/labels/:labelInfo</p>
 
     <h3>Method type</h3>
     <p>GET</p>
@@ -534,7 +590,7 @@
     <p>Get information on all users</p>
 
     <h3>Endpoint URL</h3>
-    <p>/users'</p>
+    <p>https:/mybands.herokuapp.com/users'</p>
 
     <h3>Method type</h3>
     <p>GET</p>
@@ -634,7 +690,7 @@
     <p>Post a new user to the DB</p>
 
     <h3>Endpoint URL</h3>
-    <p>/register</p>
+    <p>https:/mybands.herokuapp.com/register</p>
 
     <h3>Method type</h3>
     <p>POST</p>
@@ -696,7 +752,7 @@
     <p>Update user information</p>
 
     <h3>Endpoint URL</h3>
-    <p>/users/:usernameS</p>
+    <p>https:/mybands.herokuapp.com/users/:usernameS</p>
 
     <h3>Method type</h3>
     <p>PUT</p>
@@ -756,7 +812,7 @@
     <p>Add a specific band to a user favorites</p>
 
     <h3>Endpoint URL</h3>
-    <p>/users/:username/bands/:bandID</p>
+    <p>https:/mybands.herokuapp.com/users/:username/bands/:bandID</p>
 
     <h3>Method type</h3>
     <p>POST</p>
@@ -804,7 +860,7 @@
     <p>Delete a user from DB</p>
 
     <h3>Endpoint URL</h3>
-    <p>/users/:username</p>
+    <p>https:/mybands.herokuapp.com/users/:username</p>
 
     <h3>Method type</h3>
     <p>DELETE</p>
@@ -893,7 +949,7 @@
     <p>Add a new band to the collection</p>
 
     <h3>Endpoint URL</h3>
-    <p>/bands</p>
+    <p>https:/mybands.herokuapp.com/bands</p>
 
     <h3>Method type</h3>
     <p>POST</p>
@@ -954,7 +1010,7 @@
     <p>Delete a band from collection</p>
 
     <h3>Endpoint URL</h3>
-    <p>/bands/:bandname</p>
+    <p>https:/mybands.herokuapp.com/bands/:bandname</p>
 
     <h3>Method type</h3>
     <p>DELETE</p>
