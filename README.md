@@ -8,18 +8,18 @@ bands, labels, and genres. Users will be able to sign up, update their
 personal information, and create a list of their favorite bands.
 
 
-● The API uses a Node.js and Express application.
-● The API uses REST architecture, with URL endpoints 
-● The API uses at least three middleware modules, such as the body-parser package for
+* The API uses a Node.js and Express application.
+* The API uses REST architecture, with URL endpoints 
+* The API uses at least three middleware modules, such as the body-parser package for
 reading data from requests and morgan for logging.
-● The API usesa “package.json” file.
-● The database uses MongoDB.
-● The business logic is modeled with Mongoose.
-● The API provide bands information in JSON format.
-● The API include user authentication and authorization code.
-● The API include data validation logic.
-● The API meet data security regulations.
-● The API is deployed to Heroku.
+* The API usesa “package.json” file.
+* The database uses MongoDB.
+* The business logic is modeled with Mongoose.
+* The API provide bands information in JSON format.
+* The API include user authentication and authorization code.
+* The API include data validation logic.
+* The API meet data security regulations.
+* The API is deployed to Heroku.
 
 
 ## Built With
