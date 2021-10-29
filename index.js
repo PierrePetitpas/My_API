@@ -181,7 +181,7 @@ app.put('/users/:username', [
         Firstname: req.body.FirstName,
         Lastname: req.body.LastName,
         Email: req.body.Email,
-        DOB: req.body.Birthday
+        DOB: req.body.DOB
       }
     },
     { new: true},

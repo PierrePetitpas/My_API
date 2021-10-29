@@ -4,207 +4,75 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <title>MyMovieFlix</title>
 </head>
 <body>
     <h1>Documentation for My Metal Bands API</h1>
-    <p>This document will outline the technicalities of My Metal Bands site.</p>
+    <p>This document will outline the technicalities of My Metal Bands APIs.</p>
 
-    <table><thead>
-        <tr>
-            <th>request</th>
-            <th>url</th>
-            <th>response</th>
-        </tr>
+  <table class="table table-dark">
+    <thead>
+      <tr>
+        <th scope="col">Request</th>
+        <th scope="col">URL</th>
+        <th scope="col">HTTP Method</th>
+        <th scope="col">Request format</th>
+        <th scope="col">Response format</th>
+      </tr>
     </thead>
-  <tbody>
-    <tr>
-        <td>Login</td>
+    <tbody>
+      <tr>
+        <th scope="row">Login to the application</th>
         <td>/login</td>
-        <td>Login to the application</td>
-    </tr>
-      <tr>
-          <td>GET request</td>
-          <td>/bands</td>
-          <td>return array of all bands</td>
-      </tr>
-      <tr>
-          <td>GET request</td>
-          <td>/bands/:bandName</td>
-          <td>return band by name</td>
-      </tr>
-    <!--  <tr>
-        <td>GET request</td>
-        <td>/genres</td>
-        <td>return array of all bands</td>
-    </tr> -->
-      <tr>
-          <td>GET request</td>
-          <td>/genres/:genre</td>
-          <td>return information about a specific band genre</td>
-      </tr>
-      <tr>
-          <td>GET request</td>
-          <td>/labels/:labelInfo</td>
-          <td>return information about specific label</td>
-      </tr>
-      <tr>
-        <td>GET request</td>
-        <td>/users</td>
-        <td>return array of all users</td>
-    </tr>
-      <tr>
-          <td>POST request</td>
-          <td>/users</td>
-          <td>register a new user to the web application</td>
-      </tr>
-      <tr>
-          <td>PUT request</td>
-          <td>//users/:username</td>
-          <td>Update the user information</td>
-      </tr>
-      <tr>
-          <td>POST request</td>
-          <td>/users/:username/bands/:bandID</td>
-          <td>Add a band to a specific user's profile</td>
-      </tr>
-      <tr>
-          <td>DELETE request</td>
-          <td>/users/:username</td>
-          <td>Unregister a user from the database</td>
-      </tr>
-      <tr>
-          <td>DELETE request</td>
-          <td>/users/:username/bands/:bandID</td>
-          <td>Delete a band from the users favorites</td>
-      </tr>
-      <tr>
-        <td>POST request</td>
-        <td>/bands</td>
-        <td>Add a new band</td>
-    </tr>
-    <tr>
-        <td>DELETE request</td>
-        <td>/bands/:bandname</td>
-        <td>Delete a band</td>
-    </tr>
-  </tbody></table>
-
-    <h1>API Documentation details</h1>
-
-    <h2>Login</h2>
-    <p>Login to application</p>
-
-    <h3>Endpoint URL</h3>
-    <p>https:/mybands.herokuapp.com/login</p>
-
-    <h3>Method type</h3>
-    <p>GET</p>
-
-    <h3>Query parameters </h3>
-    <p></p>
-
-    <h3>Format of data expected in the body of the request</h3>
-    <p>json</p>
-
-    <h3>Format of the response data</h3>
-    <p>{
-        "user": {
-            "_id": ID,
-            "Username": String,
-            "Password": Hashed String,
-            "Firstname": String,,
-            "Lastname": String,,
-            "Email": Email,
-            "Favorites": Array,
-            "__v": 0
-        },
-        "token": Token
-    </p>
-
-    <h3>Request example</h3>
-    <p></p>
-
-    <h3>Response example</h3>
-    <p>{
-        "user": {
-            "_id": "61767d04577dc980673cf526",
-            "Username": "LoginUser",
-            "Password": "$2b$10$ufhJdnrjQjgPl35NpUQiUeG9t/6QNbd1jPyoZxS57d/s6uwEj1w3y",
+        <td>POST</td>
+        <td>None</td>
+        <td>"user": {
+            "_id": "617b96113347bb7bc6ff5fdf",
+            "Username": "LoginUser123",
+            "Password": "$2b$10$MxoQ9bjkrJ.c2P5JyajVXuOyVjHtuATxqmICjOmFrqH3SXMmhuzOy",
             "Firstname": "Test1",
             "Lastname": "Test2",
-            "Email": "testtest@live.com",
+            "Email": "pierre@live.com",
             "Favorites": [],
             "__v": 0
         },
-        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTc2N2QwNDU3N2RjOTgwNjczY2Y1MjYiLCJVc2VybmFtZSI6IkxvZ2luVXNlciIsIlBhc3N3b3JkIjoiJDJiJDEwJHVmaEpkbnJqUWpnUGwzNU5wVVFpVWVHOXQvNlFOYmQxalB5b1p4UzU3ZC9zNnV3RWoxdzN5IiwiRmlyc3RuYW1lIjoiVGVzdDEiLCJMYXN0bmFtZSI6IlRlc3QyIiwiRW1haWwiOiJ0ZXN0dGVzdEBsaXZlLmNvbSIsIkZhdm9yaXRlcyI6W10sIl9fdiI6MCwiaWF0IjoxNjM1MjMzMzIyLCJleHAiOjE2MzU4MzgxMjIsInN1YiI6IkxvZ2luVXNlciJ9.clRoVszprHyPpk7tiop8t2btC0LbZcvwaqZY3Olec9I"
-    </p>
-
-    <hr>
-
-
-    <h2>Get all Bands</h2>
-    <p>Get an array of all bands</p>
-
-    <h3>Endpoint URL</h3>
-    <p>https:/mybands.herokuapp.com/Bands</p>
-
-    <h3>Method type</h3>
-    <p>GET</p>
-
-    <h3>Query parameters </h3>
-    <p>/bands</p>
-
-    <h3>Format of data expected in the body of the request</h3>
-    <p>JSon</p>
-
-    <h3>Format of the response data</h3>
-    <p>{
-        Name: {type: String, require: true},
-        Description: {type: String, require: true },
-        Genre: {
-            Name: String,
-            Description: String
-        },
-        Label: {
-            Name: String,
-            Bio: String,
-            Creation: Number,
-            Country: String
-        },
-        Country: String,
-        Continent: String,
-        Creation: Number,
-        Imagepath: String,
-        Active: Boolean
-    }</p>
-
-    <h3>Request example</h3>
-    <p></p>
-
-    <h3>Response example</h3>
-    <p>[
-        {
-            "Genre": {
-                "Name": "Avant-garde Metal",
-                "Description": "Avant-garde metal (also known as avant-metal, experimental metal, and experimetal) is a subgenre of heavy metal music loosely defined by use of experimentation and innovative, avant-garde elements, including non-standard and unconventional sounds, instruments, song structures, playing styles, and vocal techniques."
-            },
-            "Label": {
-                "Name": "Metal Blades Records",
-                "Bio": "Metal Blade Records is a heavy metal independent record label founded by Brian Slagel in 1982.",
-                "Creation": 1982,
-                "Country": "US"
-            },
-            "_id": "616e6e0c86671ea245b4418a",
-            "Name": "Igorrr",
-            "Description": "Gautier Serre, better known by his stage name Igorrr, is aFrench musician. Under the Igorrr alias, he combines a variety of disparate genres into a singular sound.",
-            "Country": "France",
-            "Continent": "Europe",
-            "Creation": 2005,
-            "ImagePath": "https://www.spirit-of-metal.com/les%20goupes/I/Igorrr/pics/1443518_logo.jpg",
-            "Active": true
-        },
-        {
+        "token": TOKEN</td>
+      </tr>
+      <tr>
+        <th scope="row">Return array of all bands</th>
+        <td>/bands</td>
+        <td>GET</td>
+        <td>None</td>
+        <td>[
+            {
+                "Genre": {
+                    "Name": "Avant-garde Metal",
+                    "Description": "Avant-garde metal (also known as avant-metal, experimental metal, and experimetal) is a subgenre of heavy metal music loosely defined by use of experimentation and innovative, avant-garde elements, including non-standard and unconventional sounds, instruments, song structures, playing styles, and vocal techniques."
+                },
+                "Label": {
+                    "Name": "MVKA",
+                    "Bio": "A fully independent company, MVKA provides a broad range of label and artist services globally.",
+                    "Creation": 2015,
+                    "Country": "UK"
+                },
+                "_id": "616e70c8064a3fd1e2ac7650",
+                "Name": "Zeal and Ardor",
+                "Description": "Zeal and Ardor is a Swiss avant-garde metal band started and led by Manuel Gagneux, a Swiss-American musician who had previously created a chamber pop project called Birdmask. Formed in 2013, the band mixes sounds of African-American spirituals with black metal.",
+                "Country": "Switzerland",
+                "Continent": "Europe",
+                "Creation": 2014,
+                "ImagePath": "https://www.spirit-of-metal.com/les%20goupes/Z/Zeal%20and%20Ardor/pics/logo.jpg",
+                "Active": true
+            }]</td>
+      </tr>
+      <tr>
+        <th scope="row">Get information on one band</th>
+        <td>/bands/:bandName</td>
+        <td>GET</td>
+        <td>None</td>
+        <td>{
             "Genre": {
                 "Name": "Heavy Metal",
                 "Description": "Heavy metal (or simply metal) is a genre of rock music that developed in the late 1960s and early 1970s, largely in the United Kingdom and the United States. With roots in blues rock, psychedelic rock, and acid rock, heavy metal bands developed a thick, massive sound, characterized by distortion, extended guitar solos, emphatic beats, and loudness."
@@ -223,814 +91,81 @@
             "Creation": 1969,
             "ImagePath": "https://www.spirit-of-metal.com/les%20goupes/J/Judas%20Priest/pics/logo.jpg",
             "Active": true
-        },
-        {
-            "Genre": {
-                "Name": "Progressive Metal",
-                "Description": "Progressive metal (sometimes shortened to prog metal) is a broad fusion music genre melding heavy metal and progressive rock, combining the loud aggression and amplified guitar-driven sound of the former with the more experimental, cerebral or pseudo-classical compositions of the latter."
-            },
-            "Label": {
-                "Name": "Nuclear Blast Entertainment",
-                "Bio": "Nuclear Blast is a record label and mail order record distributor with subsidiaries in Germany, the United States and Brazil. The label was founded in 1987 by Markus Staiger in Germany.",
-                "Creation": 1987,
-                "Country": "Germany"
-            },
-            "_id": "616e709d064a3fd1e2ac764e",
-            "Name": "Opeth",
-            "Description": "Opeth is a Swedish progressive metal band from Stockholm, formed in 1989. The group has been through several personnel changes, including the replacement of every single original member. Lead vocalist, guitarist and songwriter Mikael Åkerfeldt has remained Opeth primary driving force since the departure of original vocalist David Isberg in 1992.",
-            "Country": "Sweden",
-            "Continent": "Europe",
-            "Creation": 1987,
-            "ImagePath": "https://www.spirit-of-metal.com/les%20goupes/O/Opeth/pics/359786_logo.jpg",
-            "Active": true
-        },
-        {
-            "Genre": {
-                "Name": "Thrash Metal",
-                "Description": "Thrash metal (or simply thrash) is an extreme subgenre of heavy metal music characterized by its overall aggression and often fast tempo."
-            },
-            "Label": {
-                "Name": "Nuclear Blast Entertainment",
-                "Bio": "Nuclear Blast is a record label and mail order record distributor with subsidiaries in Germany, the United States and Brazil. The label was founded in 1987 by Markus Staiger in Germany.",
-                "Creation": 1987,
-                "Country": "Germany"
-            },
-            "_id": "616e70b6064a3fd1e2ac764f",
-            "Name": "Exodus",
-            "Description": "Exodus is an American thrash metal band formed in 1979 in Richmond, California. Their current lineup consists of guitarists Gary Holt and Lee Altus, bassist Jack Gibson, drummer Tom Hunting, and lead vocalist Steve Zetro Souza.",
-            "Country": "US",
-            "Continent": "North America",
-            "Creation": 1979,
-            "ImagePath": "https://www.spirit-of-metal.com/les%20goupes/E/Exodus/pics/352376_logo.gif",
-            "Active": true
-        },
-        {
-            "Genre": {
-                "Name": "Avant-garde Metal",
-                "Description": "Avant-garde metal (also known as avant-metal, experimental metal, and experimetal) is a subgenre of heavy metal music loosely defined by use of experimentation and innovative, avant-garde elements, including non-standard and unconventional sounds, instruments, song structures, playing styles, and vocal techniques."
-            },
-            "Label": {
-                "Name": "MVKA",
-                "Bio": "A fully independent company, MVKA provides a broad range of label and artist services globally.",
-                "Creation": 2015,
-                "Country": "UK"
-            },
-            "_id": "616e70c8064a3fd1e2ac7650",
-            "Name": "Zeal and Ardor",
-            "Description": "Zeal and Ardor is a Swiss avant-garde metal band started and led by Manuel Gagneux, a Swiss-American musician who had previously created a chamber pop project called Birdmask. Formed in 2013, the band mixes sounds of African-American spirituals with black metal.",
-            "Country": "Switzerland",
-            "Continent": "Europe",
-            "Creation": 2014,
-            "ImagePath": "https://www.spirit-of-metal.com/les%20goupes/Z/Zeal%20and%20Ardor/pics/logo.jpg",
-            "Active": true
-        },
-        {
-            "Genre": {
-                "Name": "Black Metal",
-                "Description": "Black metal is an extreme subgenre of heavy metal music. Common traits include fast tempos, a shrieking vocal style, heavily distorted guitars played with tremolo picking, raw (lo-fi) recording, unconventional song structures, and an emphasis on atmosphere. Artists often appear in corpse paint and adopt pseudonyms."
-            },
-            "Label": {
-                "Name": "Season of Mist",
-                "Bio": "Season of Mist is an independent record label and record distributor with subsidiaries in France and the United States. The record label was founded in 1996 by Michael S. Berberian in Marseille, France.",
-                "Creation": 1996,
-                "Country": "France"
-            },
-            "_id": "616e70df064a3fd1e2ac7651",
-            "Name": "Mayhem",
-            "Description": "Mayhem is a Norwegian black metal band formed in Oslo in 1984. They were one of the founders of the Norwegian black metal scene and their music has strongly influenced the black metal genre.",
-            "Country": "Norway",
-            "Continent": "Europe",
-            "Creation": 1984,
-            "ImagePath": "https://www.spirit-of-metal.com/les%20goupes/M/Mayhem%20(NOR)/pics/124864_logo.jpg",
-            "Active": true
-        },
-        {
-            "Genre": {
-                "Name": "Avant-garde Metal",
-                "Description": "Avant-garde metal (also known as avant-metal, experimental metal, and experimetal) is a subgenre of heavy metal music loosely defined by use of experimentation and innovative, avant-garde elements, including non-standard and unconventional sounds, instruments, song structures, playing styles, and vocal techniques."
-            },
-            "Label": {
-                "Name": "Season of Mist",
-                "Bio": "Season of Mist is an independent record label and record distributor with subsidiaries in France and the United States. The record label was founded in 1996 by Michael S. Berberian in Marseille, France.",
-                "Creation": 1996,
-                "Country": "France"
-            },
-            "_id": "616e70ef064a3fd1e2ac7652",
-            "Name": "Mora Prozaka",
-            "Description": "The band with the cunning name MORA PROKAZA was formed back in 2013 by Farmakon (guitars, vocals) and Isvind (drums). Both musicians have a long-term experience of playing in many local Belorussian extreme metal bands.",
-            "Country": "Belarus",
-            "Continent": "Europe",
-            "Creation": 2013,
-            "ImagePath": "https://www.spirit-of-metal.com/les%20goupes/M/Mora%20Prokaza/pics/1576820_logo.jpg",
-            "Active": true
-        },
-        {
-            "Genre": {
-                "Name": "Technical death metal",
-                "Description": "Technical death metal (also referred to as tech-death) is a musical subgenre of death metal that began and developed in the early- to mid-1990s, with particular focus on challenging, demanding instrumental skill and complex songwriting."
-            },
-            "Label": {
-                "Name": "Season of Mist",
-                "Bio": "Season of Mist is an independent record label and record distributor with subsidiaries in France and the United States. The record label was founded in 1996 by Michael S. Berberian in Marseille, France.",
-                "Creation": 1996,
-                "Country": "France"
-            },
-            "_id": "616e7103064a3fd1e2ac7653",
-            "Name": "Gorguts",
-            "Description": "Gorguts is a Canadian death metal band from Sherbrooke, Quebec, formed in 1989. The band has been through many personnel changes since its inception, and its only constant member has been guitarist and vocalist Luc Lemay, who remains the primary creative force in the band.",
-            "Country": "Canada",
-            "Continent": "North America",
-            "Creation": 1989,
-            "ImagePath": "https://www.spirit-of-metal.com/les%20goupes/G/Gorguts/pics/1138693_logo.jpg",
-            "Active": true
-        },
-        {
-            "Genre": {
-                "Name": "Black Metal",
-                "Description": "Black metal is an extreme subgenre of heavy metal music. Common traits include fast tempos, a shrieking vocal style, heavily distorted guitars played with tremolo picking, raw (lo-fi) recording, unconventional song structures, and an emphasis on atmosphere. Artists often appear in corpse paint and adopt pseudonyms."
-            },
-            "Label": {
-                "Name": "Season of Mist",
-                "Bio": "Season of Mist is an independent record label and record distributor with subsidiaries in France and the United States. The record label was founded in 1996 by Michael S. Berberian in Marseille, France.",
-                "Creation": 1996,
-                "Country": "France"
-            },
-            "_id": "616e7117064a3fd1e2ac7654",
-            "Name": "Abbath",
-            "Description": "Olve Eikemo (born 27 June 1973), better known by his stage name Abbath Doom Occulta or simply Abbath, is a Norwegian musician best known as a founding member of the black metal band Immortal. Before founding Immortal, Abbath performed with Old Funeral alongside future Immortal member Demonaz.",
-            "Country": "Norway",
-            "Continent": "Europe",
-            "Creation": 1988,
-            "ImagePath": "https://www.spirit-of-metal.com/les%20goupes/A/Abbath/pics/logo.jpg",
-            "Active": true
-        },
-        {
-            "Genre": {
-                "Name": "Black Metal",
-                "Description": "Black metal is an extreme subgenre of heavy metal music. Common traits include fast tempos, a shrieking vocal style, heavily distorted guitars played with tremolo picking, raw (lo-fi) recording, unconventional song structures, and an emphasis on atmosphere. Artists often appear in corpse paint and adopt pseudonyms."
-            },
-            "Label": {
-                "Name": "Season of Mist",
-                "Bio": "This is new text!!!!Season of Mist is an independent record label and record distributor with subsidiaries in France and the United States. The record label was founded in 1996 by Michael S. Berberian in Marseille, France.",
-                "Creation": 1996,
-                "Country": "France"
-            },
-            "_id": "616e712d064a3fd1e2ac7655",
-            "Name": "1349",
-            "Description": "This is new text!!!!!1349 is a Norwegian black metal band from Oslo, Norway, formed in 1997. The band's name is a reference to the year the Black Death reached Norway.",
-            "Country": "Norway",
-            "Continent": "Europe",
-            "Creation": 1997,
-            "ImagePath": "https://www.spirit-of-metal.com/les%20goupes/1/1349/pics/logo.jpg",
-            "Active": true
-        }
-    ]</p>
-
-    <hr>
-
-    <h2>Get Specific Band</h2>
-    <p>Get a specific band name information</p>
-
-    <h3>Endpoint URL</h3>
-    <p>https:/mybands.herokuapp.com/bands/:bandName</p>
-
-    <h3>Method type</h3>
-    <p>GET</p>
-
-    <h3>Query parameters </h3>
-    <p></p>
-
-    <h3>Format of data expected in the body of the request</h3>
-    <p></p>
-
-    <h3>Format of the response data</h3>
-    <p>{
-        Name: {type: String, require: true},
-        Description: {type: String, require: true },
-        Genre: {
-            Name: String,
-            Description: String
-        },
-        Label: {
-            Name: String,
-            Bio: String,
-            Creation: Number,
-            Country: String
-        },
-        Country: String,
-        Continent: String,
-        Creation: Number,
-        Imagepath: String,
-        Active: Boolean
-    }</p>
-
-    <h3>Request example</h3>
-    <p></p>
-
-    <h3>Response example</h3>
-    <p>{
-        "Genre": {
-            "Name": "Avant-garde Metal",
-            "Description": "Avant-garde metal (also known as avant-metal, experimental metal, and experimetal) is a subgenre of heavy metal music loosely defined by use of experimentation and innovative, avant-garde elements, including non-standard and unconventional sounds, instruments, song structures, playing styles, and vocal techniques."
-        },
-        "Label": {
-            "Name": "Metal Blades Records",
-            "Bio": "Metal Blade Records is a heavy metal independent record label founded by Brian Slagel in 1982.",
-            "Creation": 1982,
-            "Country": "US"
-        },
-        "_id": "616e6e0c86671ea245b4418a",
-        "Name": "Igorrr",
-        "Description": "Gautier Serre, better known by his stage name Igorrr, is aFrench musician. Under the Igorrr alias, he combines a variety of disparate genres into a singular sound.",
-        "Country": "France",
-        "Continent": "Europe",
-        "Creation": 2005,
-        "ImagePath": "https://www.spirit-of-metal.com/les%20goupes/I/Igorrr/pics/1443518_logo.jpg",
-        "Active": true
-    }</p>
-
-    <hr>
-
-    <!--<h2>Get all Genres</h2>
-    <p>Get a list of all Genres</p>
-
-    <h3>Endpoint URL</h3>
-    <p>https:/mybands.herokuapp.com/genres</p>
-
-    <h3>Method type</h3>
-    <p>GET</p>
-
-    <h3>Query parameters </h3>
-    <p></p>
-
-    <h3>Format of data expected in the body of the request</h3>
-    <p></p>
-
-    <h3>Format of the response data</h3>
-    <p>
-        Name: {type: String, required: true},
-        Description: {type: String, required: true}
-    </p>
-
-    <h3>Request example</h3>
-    <p></p>
-
-    <h3>Response example</h3>
-    <p>[
-        {
-            "Favorites": [],
-            "_id": "616eb3c9223d39d7d782350f",
-            "Name": "Avant-garde Metal",
-            "Description": "Avant-garde metal (also known as avant-metal, experimental metal, and experimetal) is a subgenre of heavy metal music loosely defined by use of experimentation and innovative, avant-garde elements, including non-standard and unconventional sounds, instruments, song structures, playing styles, and vocal techniques."
-        },
-        {
-            "Favorites": [],
-            "_id": "616eb4bb223d39d7d7823510",
-            "Name": "Heavy Metal",
-            "Description": "Heavy metal (or simply metal) is a genre of rock music that developed in the late 1960s and early 1970s, largely in the United Kingdom and the United States. With roots in blues rock, psychedelic rock, and acid rock, heavy metal bands developed a thick, massive sound, characterized by distortion, extended guitar solos, emphatic beats, and loudness."
-        },
-        {
-            "Favorites": [],
-            "_id": "616eb4cc223d39d7d7823511",
-            "Name": "Progressive Metal",
-            "Description": "Progressive metal (sometimes shortened to prog metal) is a broad fusion music genre melding heavy metal and progressive rock, combining the loud aggression and amplified guitar-driven sound of the former with the more experimental, cerebral or pseudo-classical compositions of the latter."
-        },
-        {
-            "Favorites": [],
-            "_id": "616eb4e1223d39d7d7823512",
+        }</td>
+      </tr>
+      <tr>
+        <th scope="row">Get information on one genre</th>
+        <td>/genres/:genreName</td>
+        <td>GET</td>
+        <td>None</td>
+        <td>{
             "Name": "Thrash Metal",
             "Description": "Thrash metal (or simply thrash) is an extreme subgenre of heavy metal music characterized by its overall aggression and often fast tempo."
-        },
-        {
-            "Favorites": [],
-            "_id": "616eb4f2223d39d7d7823513",
-            "Name": "Black Metal",
-            "Description": "Black metal is an extreme subgenre of heavy metal music. Common traits include fast tempos, a shrieking vocal style, heavily distorted guitars played with tremolo picking, raw (lo-fi) recording, unconventional song structures, and an emphasis on atmosphere. Artists often appear in corpse paint and adopt pseudonyms."
-        },
-        {
-            "Favorites": [],
-            "_id": "616eb501223d39d7d7823514",
-            "Name": "Technical death metal",
-            "Description": "Technical death metal (also referred to as tech-death) is a musical subgenre of death metal that began and developed in the early- to mid-1990s, with particular focus on challenging, demanding instrumental skill and complex songwriting."
-        }
-    ]</p> 
-
-    <hr> -->
- 
-    <h2>Get information on one Genre</h2>
-    <p>Get detailed information on a specific genre</p>
-
-    <h3>Endpoint URL</h3>
-    <p>https:/mybands.herokuapp.com/genres/:genreName</p>
-
-    <h3>Method type</h3>
-    <p>GET</p>
-
-    <h3>Query parameters </h3>
-    <p></p>
-
-    <h3>Format of data expected in the body of the request</h3>
-    <p>json</p>
-
-    <h3>Format of the response data</h3>
-    <p>
-        Name: {type: String, required: true},
-        Description: {type: String, required: true}
-    </p>
-
-    <h3>Request example</h3>
-    <p></p>
-
-    <h3>Response example</h3>
-    <p>{
-        "_id": "616eb3c9223d39d7d782350f",
-        "Name": "Avant-garde Metal",
-        "Description": "Avant-garde metal (also known as avant-metal, experimental metal, and experimetal) is a subgenre of heavy metal music loosely defined by use of experimentation and innovative, avant-garde elements, including non-standard and unconventional sounds, instruments, song structures, playing styles, and vocal techniques."
-    }</p>
-
-    <hr>
-    <h2>Get information on one Label</h2>
-    <p>Get detailed information on a specific label</p>
-
-    <h3>Endpoint URL</h3>
-    <p>https:/mybands.herokuapp.com/labels/:labelInfo</p>
-
-    <h3>Method type</h3>
-    <p>GET</p>
-
-    <h3>Query parameters </h3>
-    <p></p>
-
-    <h3>Format of data expected in the body of the request</h3>
-    <p>json</p>
-
-    <h3>Format of the response data</h3>
-    <p>
-        Name: {type: String, required: true},
-        Bio: {type: String, required: true},
-        Creation: Number,
-        Country: String
-    </p>
-
-    <h3>Request example</h3>
-    <p></p>
-
-    <h3>Response example</h3>
-    <p>{
-        "_id": "616eb626223d39d7d7823515",
-        "Name": "Metal Blades Records",
-        "Bio": "Metal Blade Records is a heavy metal independent record label founded by Brian Slagel in 1982.",
-        "Creation": "1982",
-        "Country": "US"
-    }</p>
-
-    <hr>
-
-    <h2>Get all users</h2>
-    <p>Get information on all users</p>
-
-    <h3>Endpoint URL</h3>
-    <p>https:/mybands.herokuapp.com/users'</p>
-
-    <h3>Method type</h3>
-    <p>GET</p>
-
-    <h3>Query parameters </h3>
-    <p></p>
-
-    <h3>Format of data expected in the body of the request</h3>
-    <p>json</p>
-
-    <h3>Format of the response data</h3>
-    <p>
-        Username: {type: String, require: true},
-        Firstname: String,
-        Lastname: String,
-        Password: {type: String, require: true},
-        Email: {type: String, require: true},
-        DOB: Date,
-        Favorites: [{type: mongoose.Schema.Types.ObjectId, ref: 'Band'}]
-    </p>
-
-    <h3>Request example</h3>
-    <p></p>
-
-    <h3>Response example</h3>
-    <p>[
-        {
-            "_id": "616e732221ba485f30a1cd91",
-            "Username": "Pierrep",
-            "Firstname": "Pierre",
-            "Lastname": "Petitpas",
-            "Password": "Pass12345",
-            "Email": "pp@live.com",
-            "DOB": "1970-11-05T00:00:00.000Z",
-            "Favorites": [
-                "616e709d064a3fd1e2ac764e",
-                "616e70c8064a3fd1e2ac7650"
-            ]
-        },
-        {
-            "_id": "616e733c21ba485f30a1cd92",
-            "Username": "Evag",
-            "Firstname": "Eva",
-            "Lastname": "Gunnarsson",
-            "Password": "Pass12345",
-            "Email": "evag@live.com",
-            "DOB": "1992-02-20T00:00:00.000Z",
-            "Favorites": [
-                "616d7c58a3ba0aadbef84583",
-                "616e6e0c86671ea245b4418a"
-            ]
-        },
-        {
-            "_id": "616e734c21ba485f30a1cd93",
-            "Username": "JohnD",
-            "Firstname": "John",
-            "Lastname": "Doe",
-            "Password": "Pass12345",
-            "Email": "john_doeg@live.com",
-            "DOB": "2000-05-10T00:00:00.000Z",
-            "Favorites": [
-                "616e6e0c86671ea245b4418a",
-                "616e709d064a3fd1e2ac764e",
-                "616d7c58a3ba0aadbef84583",
-                "616e70b6064a3fd1e2ac764f",
-                "616e7103064a3fd1e2ac7653"
-            ]
-        },
-        {
-            "_id": "616e735e21ba485f30a1cd94",
-            "Username": "JanneD",
-            "Firstname": "Janne",
-            "Lastname": "Doe",
-            "Password": "Pass12345",
-            "Email": "janneDg@live.com",
-            "DOB": "2989-10-01T00:00:00.000Z",
-            "Favorites": [
-                "616e6e0c86671ea245b4418a"
-            ]
-        },
-        {
-            "_id": "616fe79f737c81daffa184cb",
-            "Username": "Testuser1",
-            "Firstname": "Test1",
-            "Lastname": "Test2",
-            "Password": "Pass12345",
-            "Email": "testtest@live.com",
-            "Favorites": [],
-            "__v": 0
-        }
-    ]</p>
-
-    <hr>
-
-
-   <h2>Add new user</h2>
-    <p>Post a new user to the DB</p>
-
-    <h3>Endpoint URL</h3>
-    <p>https:/mybands.herokuapp.com/register</p>
-
-    <h3>Method type</h3>
-    <p>POST</p>
-
-    <h3>Query parameters </h3>
-    <p></p>
-
-    <h3>Format of data expected in the body of the request</h3>
-    <p>
-        Username: {type: String, require: true},
-        Firstname: String,
-        Lastname: String,
-        Password: {type: String, require: true},
-        Email: {type: String, require: true},
-        DOB: Date,
-        Favorites: [{type: mongoose.Schema.Types.ObjectId, ref: 'Band'}]
-    </p>
-
-    <h3>Format of the response data</h3>
-    <p>
-        Username: {type: String, require: true},
-        Firstname: String,
-        Lastname: String,
-        Password: {type: String, require: true},
-        Email: {type: String, require: true},
-        DOB: Date,
-        Favorites: [{type: mongoose.Schema.Types.ObjectId, ref: 'Band'}]
-    </p>
-
-    <h3>Request example</h3>
-    <p>
-        {
-            "Username" : "Testuser1",
-            "FirstName" : "Test1",
-            "LastName" : "Test2",
-            "Password" : "Pass12345",
-            "Email" : "testtest@live.com",
-            "DOB" : "05/11/1989"
-        }
-    </p>
-
-    <h3>Response example</h3>
-    <p>
-        {
-            "Username": "Testuser1",
-            "Firstname": "Test1",
-            "Lastname": "Test2",
-            "Password": "Pass12345",
-            "Email": "testtest@live.com",
-            "Favorites": [],
-            "_id": "616fe79f737c81daffa184cb",
-            "__v": 0
-        }
-    </p>
-
-    <hr>
-
-   <h2>Update user</h2>
-    <p>Update user information</p>
-
-    <h3>Endpoint URL</h3>
-    <p>https:/mybands.herokuapp.com/users/:usernameS</p>
-
-    <h3>Method type</h3>
-    <p>PUT</p>
-
-    <h3>Query parameters </h3>
-    <p></p>
-
-    <h3>Format of data expected in the body of the request</h3>
-    <p>
-        Username: {type: String, require: true},
-        Firstname: String,
-        Lastname: String,
-        Password: {type: String, require: true},
-        Email: {type: String, require: true},
-        DOB: Date
-    </p>
-
-    <h3>Format of the response data</h3>
-    <p>
-        Username: {type: String, require: true},
-        Firstname: String,
-        Lastname: String,
-        Password: {type: String, require: true},
-        Email: {type: String, require: true},
-        DOB: Date
-    </p>
-
-    <h3>Request example</h3>
-    <p>
-        {
-            "Username" : "Testuser12",
-            "FirstName" : "Test145",
-            "LastName" : "Test244",
-            "Password" : "Pass123456",
-            "Email" : "Ptesttest@live.com",
-            "DOB" : "06/11/1989"
-        }
-    </p>
-
-    <h3>Response example</h3>
-    <p>
-        {
-            "_id": "616eda8c0259bf76b609051a",
-            "Username": "Testuser12",
-            "Firstname": "Test145",
-            "Lastname": "Test244",
+        }</td>
+      </tr>
+      <tr>
+        <th scope="row">Get information on one music label</th>
+        <td>/labels/:labelName</td>
+        <td>GET</td>
+        <td>None</td>
+        <td>{
+            "Name": "Season of Mist",
+            "Bio": "Season of Mist is an independent record label and record distributor with subsidiaries in France and the United States. The record label was founded in 1996 by Michael S. Berberian in Marseille, France.",
+            "Creation": 1996,
+            "Country": "France"
+        }</td>
+      </tr>
+      <tr>
+        <th scope="row">Get array of all users</th>
+        <td>/users</td>
+        <td>GET</td>
+        <td>None</td>
+        <td>[
+            {
+                "_id": "6172ed11ea1b5162d5b4e820",
+                "Username": "LoginUser10",
+                "Password": "$2b$10$MwNb02ny0d2z5KL3YZP6MO7cAmatO9SnUACYWwOjyhzflW1q3ih9W",
+                "Firstname": "Test1",
+                "Lastname": "Test2",
+                "Email": "testtest@live.com",
+                "Favorites": [],
+                "__v": 0
+            },
+            {
+                "_id": "61767d04577dc980673cf526",
+                "Username": "LoginUser",
+                "Password": "$2b$10$ufhJdnrjQjgPl35NpUQiUeG9t/6QNbd1jPyoZxS57d/s6uwEj1w3y",
+                "Firstname": "Test1",
+                "Lastname": "Test2",
+                "Email": "testtest@live.com",
+                "Favorites": [],
+                "__v": 0
+            }]</td>
+      </tr>
+      <tr>
+        <th scope="row">Add new user</th>
+        <td>/users</td>
+        <td>POST</td>
+        <td>{
+            "Username": "LoginUser123",
             "Password": "Pass123456",
+            "Firstname": "Test145",
+            "Lastname": "Login11133",
+            "Email": "Ptesttest@live.com",
+        }</td>
+        <td>{
+            "_id": "617b96113347bb7bc6ff5fdf",
+            "Username": "LoginUser123",
+            "Password": "Pass123456",
+            "Firstname": "Test145",
+            "Lastname": "Login11133",
             "Email": "Ptesttest@live.com",
             "Favorites": [],
             "__v": 0
-        }
-    </p>
-
-    <hr>
-
-   <h2>Add band to favorite</h2>
-    <p>Add a specific band to a user favorites</p>
-
-    <h3>Endpoint URL</h3>
-    <p>https:/mybands.herokuapp.com/users/:username/bands/:bandID</p>
-
-    <h3>Method type</h3>
-    <p>POST</p>
-
-    <h3>Query parameters </h3>
-    <p></p>
-
-    <h3>Format of data expected in the body of the request</h3>
-    <p></p>
-
-    <h3>Format of the response data</h3>
-    <p>
-        "_id": ID
-        Username: {type: String, require: true},
-        Firstname: String,
-        Lastname: String,
-        Password: {type: String, require: true},
-        Email: {type: String, require: true},
-        DOB: Date,
-        Favorites: [{type: mongoose.Schema.Types.ObjectId, ref: 'Band'}]</p>
-
-    <h3>Request example</h3>
-    <p></p>
-
-    <h3>Response example</h3>
-    <p>
-        {
-            "_id": "616e732221ba485f30a1cd91",
-            "Username": "Pierrep",
-            "Firstname": "Pierre",
-            "Lastname": "Petitpas",
-            "Password": "Pass12345",
-            "Email": "pp@live.com",
-            "DOB": "1970-11-05T00:00:00.000Z",
-            "Favorites": [
-                "616e709d064a3fd1e2ac764e",
-                "616e70c8064a3fd1e2ac7650"
-            ]
-        }
-    </p>
-
-    <hr>
-
-   <h2>Unregister user</h2>
-    <p>Delete a user from DB</p>
-
-    <h3>Endpoint URL</h3>
-    <p>https:/mybands.herokuapp.com/users/:username</p>
-
-    <h3>Method type</h3>
-    <p>DELETE</p>
-
-    <h3>Query parameters </h3>
-    <p></p>
-
-    <h3>Format of data expected in the body of the request</h3>
-    <p>text</p>
-
-    <h3>Format of the response data</h3>
-    <p></p>
-
-    <h3>Request example</h3>
-    <p></p>
-
-    <h3>Response example</h3>
-    <p>Testuser1 was delete</p>
-
-    <hr>
-
-   <h2>Remove band from favorites</h2>
-    <p>Delete a band from user favorites</p>
-
-    <h3>Endpoint URL</h3>
-    <p>/users/:username/bands/:bandID</p>
-
-    <h3>Method type</h3>
-    <p>DELETE</p>
-
-    <h3>Query parameters </h3>
-    <p></p>
-
-    <h3>Format of data expected in the body of the request</h3>
-    <p></p>
-
-    <h3>Format of the response data</h3>
-    <p></p>
-
-    <h3>Request example</h3>
-    <p></p>
-
-    <h3>Response example</h3>
-    <p></p>
-
-    <hr>
-    <h2>Remove band from favorites</h2>
-    <p>Delete a band from user favorites</p>
-
-    <h3>Endpoint URL</h3>
-    <p>/users/:username/bands/:bandID</p>
-
-    <h3>Method type</h3>
-    <p>DELETE</p>
-
-    <h3>Query parameters </h3>
-    <p></p>
-
-    <h3>Format of data expected in the body of the request</h3>
-    <p></p>
-
-    <h3>Format of the response data</h3>
-    <p>json</p>
-
-    <h3>Request example</h3>
-    <p></p>
-
-    <h3>Response example</h3>
-    <p>
-        {
-            "_id": "616e732221ba485f30a1cd91",
-            "Username": "Pierrep",
-            "Firstname": "Pierre",
-            "Lastname": "Petitpas",
-            "Password": "Pass12345",
-            "Email": "pp@live.com",
-            "DOB": "1970-11-05T00:00:00.000Z",
-            "Favorites": [
-                "616e709d064a3fd1e2ac764e"
-            ]
-        }
-    </p>
-
-    <hr>
-    <h2>Add new band</h2>
-    <p>Add a new band to the collection</p>
-
-    <h3>Endpoint URL</h3>
-    <p>https:/mybands.herokuapp.com/bands</p>
-
-    <h3>Method type</h3>
-    <p>POST</p>
-
-    <h3>Query parameters </h3>
-    <p></p>
-
-    <h3>Format of data expected in the body of the request</h3>
-    <p>json</p>
-
-    <h3>Format of the response data</h3>
-    <p>json</p>
-
-    <h3>Request example</h3>
-    <p>{
-        "Name": "Gaahls Wyrd",
-            "Description": "Gaahls Wyrd is a black metal band based in Bergen, Norway, formed by the former Gorgoroth and God Seed vocalist Gaahl.",
-            "Genre": {
-                "Name": "Black Metal",
-                "Description": "Black metal is an extreme subgenre of heavy metal music. Common traits include fast tempos, a shrieking vocal style, heavily distorted guitars played with tremolo picking, raw (lo-fi) recording, unconventional song structures, and an emphasis on atmosphere. Artists often appear in corpse paint and adopt pseudonyms."
-            },
-            "Label": {
-                "Name": "Season of Mist",
-                "Bio": "Season of Mist is an independent record label and record distributor with subsidiaries in France and the United States. The record label was founded in 1996 by Michael S. Berberian in Marseille, France.",
-                "Creation": 1996,
-                "Country": "France"
-            },
-                "Country": "Norway",
-                "Continent": "Europe",
-                "Creation": "2015",
-                "Imagepath": "https://www.spirit-of-metal.com/les%20goupes/G/Gaahls%20Wyrd/pics/1510923_logo.jpg",
-                "Active": "true"
-        }</p>
-
-    <h3>Response example</h3>
-    <p>{
-        "Name": "Gaahls Wyrd",
-        "Description": "Gaahls Wyrd is a black metal band based in Bergen, Norway, formed by the former Gorgoroth and God Seed vocalist Gaahl.",
-        "Genre": {
-            "Name": "Black Metal",
-            "Description": "Black metal is an extreme subgenre of heavy metal music. Common traits include fast tempos, a shrieking vocal style, heavily distorted guitars played with tremolo picking, raw (lo-fi) recording, unconventional song structures, and an emphasis on atmosphere. Artists often appear in corpse paint and adopt pseudonyms."
-        },
-        "Label": {
-            "Name": "Season of Mist",
-            "Bio": "Season of Mist is an independent record label and record distributor with subsidiaries in France and the United States. The record label was founded in 1996 by Michael S. Berberian in Marseille, France.",
-            "Creation": 1996
-        },
-        "Country": "Norway",
-        "Continent": "Europe",
-        "Imagepath": "https://www.spirit-of-metal.com/les%20goupes/G/Gaahls%20Wyrd/pics/1510923_logo.jpg",
-        "Active": true,
-        "_id": "616fe18fe7ecd9adb974b414",
-        "__v": 0
-    }</p>
-
-    <hr>
-    <h2>Remove band</h2>
-    <p>Delete a band from collection</p>
-
-    <h3>Endpoint URL</h3>
-    <p>https:/mybands.herokuapp.com/bands/:bandname</p>
-
-    <h3>Method type</h3>
-    <p>DELETE</p>
-
-    <h3>Query parameters </h3>
-    <p></p>
-
-    <h3>Format of data expected in the body of the request</h3>
-    <p></p>
-
-    <h3>Format of the response data</h3>
-    <p>text</p>
-
-    <h3>Request example</h3>
-    <p></p>
-
-    <h3>Response example</h3>
-    <p>Gaahls Wyrd was delete</p>
-
-    <hr>
+        }</td>
+      </tr>
+    </tbody>
+  </table>
 
 </body>
 </html>
