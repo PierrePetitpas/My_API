@@ -10,7 +10,6 @@
 </head>
 <body>
     <h1>Documentation for My Metal Bands API</h1>
-    <p>This document will outline the technicalities of My Metal Bands APIs.</p>
 
   <table class="table table-dark">
     <thead>
@@ -147,11 +146,36 @@
         <td>/users</td>
         <td>POST</td>
         <td>{
-            "Username": "LoginUser123",
-            "Password": "Pass123456",
-            "Firstname": "Test145",
-            "Lastname": "Login11133",
-            "Email": "Ptesttest@live.com",
+            "Username" : "LoginUser178",
+            "Password" : "Pass12345",
+            "FirstName" : "Test1",
+            "LastName" : "Test2",
+            "Email" : "pierre@live.com",
+            "DOB" : "05/11/1989"
+        }</td>
+        <td>{
+            "Username": "LoginUser178",
+            "Password": "$2b$10$4D85Q25fgxBGBT7999Ka6Ov1Z58M6KK.2D8KR1MUZfff.2QshvnxO",
+            "Firstname": "Test1",
+            "Lastname": "Test2",
+            "Email": "pierre@live.com",
+            "DOB": "1989-05-11T00:00:00.000Z",
+            "Favorites": [],
+            "_id": "617bb14000493bf29ea2f409",
+            "__v": 0
+        }</td>
+      </tr>
+      <tr>
+        <th scope="row">Update user information</th>
+        <td>/users/:username</td>
+        <td>PUT</td>
+        <td>{
+            "Username" : "LoginUser123",
+            "FirstName" : "Test145",
+            "LastName" : "Login11133",
+            "Password" : "Pass123456",
+            "Email" : "Ptesttest@live.com",
+            "DOB" : "06/11/1989"
         }</td>
         <td>{
             "_id": "617b96113347bb7bc6ff5fdf",
@@ -166,16 +190,36 @@
         }</td>
       </tr>
       <tr>
-        <th scope="row">Add new user</th>
-        <td>/users</td>
+        <th scope="row">Add band to favorites</th>
+        <td>/users/:username/bands/:bandID</td>
         <td>POST</td>
+        <td>none</td>
         <td>{
+            "_id": "617b96113347bb7bc6ff5fdf",
             "Username": "LoginUser123",
             "Password": "Pass123456",
             "Firstname": "Test145",
             "Lastname": "Login11133",
             "Email": "Ptesttest@live.com",
+            "Favorites": [
+                "616e70ef064a3fd1e2ac7652"
+            ],
+            "__v": 0,
+            "DOB": "1989-06-11T00:00:00.000Z"
         }</td>
+      </tr>
+      <tr>
+        <th scope="row">Delete user from application</th>
+        <td>/users/:username</td>
+        <td>DELETE</td>
+        <td>none</td>
+        <td>LoginUser10 was delete</td>
+      </tr>
+      <tr>
+        <th scope="row">Delete band from favorite</th>
+        <td>/users/:username/bands/:bandID</td>
+        <td>DELETE</td>
+        <td>none</td>
         <td>{
             "_id": "617b96113347bb7bc6ff5fdf",
             "Username": "LoginUser123",
@@ -188,6 +232,57 @@
             "DOB": "1989-06-11T00:00:00.000Z"
         }</td>
       </tr>
+      <tr>
+        <th scope="row">Add new band</th>
+        <td>/bands</td>
+        <td>POST</td>
+        <td>{
+            "Name": "Gaahls Wyrd",
+                "Description": "Gaahls Wyrd is a black metal band based in Bergen, Norway, formed by the former Gorgoroth and God Seed vocalist Gaahl.",
+                "Genre": {
+                    "Name": "Black Metal",
+                    "Description": "Black metal is an extreme subgenre of heavy metal music. Common traits include fast tempos, a shrieking vocal style, heavily distorted guitars played with tremolo picking, raw (lo-fi) recording, unconventional song structures, and an emphasis on atmosphere. Artists often appear in corpse paint and adopt pseudonyms."
+                },
+                "Label": {
+                    "Name": "Season of Mist",
+                    "Bio": "Season of Mist is an independent record label and record distributor with subsidiaries in France and the United States. The record label was founded in 1996 by Michael S. Berberian in Marseille, France.",
+                    "Creation": 1996,
+                    "Country": "France"
+                },
+                    "Country": "Norway",
+                    "Continent": "Europe",
+                    "Creation": "2015",
+                    "Imagepath": "https://www.spirit-of-metal.com/les%20goupes/G/Gaahls%20Wyrd/pics/1510923_logo.jpg",
+                    "Active": "true"
+            }</td>
+        <td>{
+            "Name": "Gaahls Wyrd",
+            "Description": "Gaahls Wyrd is a black metal band based in Bergen, Norway, formed by the former Gorgoroth and God Seed vocalist Gaahl.",
+            "Genre": {
+                "Name": "Black Metal",
+                "Description": "Black metal is an extreme subgenre of heavy metal music. Common traits include fast tempos, a shrieking vocal style, heavily distorted guitars played with tremolo picking, raw (lo-fi) recording, unconventional song structures, and an emphasis on atmosphere. Artists often appear in corpse paint and adopt pseudonyms."
+            },
+            "Label": {
+                "Name": "Season of Mist",
+                "Bio": "Season of Mist is an independent record label and record distributor with subsidiaries in France and the United States. The record label was founded in 1996 by Michael S. Berberian in Marseille, France.",
+                "Creation": 1996
+            },
+            "Country": "Norway",
+            "Continent": "Europe",
+            "Imagepath": "https://www.spirit-of-metal.com/les%20goupes/G/Gaahls%20Wyrd/pics/1510923_logo.jpg",
+            "Active": true,
+            "_id": "617bb4ca00493bf29ea2f416",
+            "__v": 0
+        }</td>
+      </tr>
+      <tr>
+        <th scope="row">Delete one band</th>
+        <td>/bands/:bandname</td>
+        <td>DELETE</td>
+        <td>none</td>
+        <td>Gaahls Wyrd was delete</td>
+      </tr>
+
     </tbody>
   </table>
 
