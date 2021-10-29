@@ -63,18 +63,6 @@ app.get('/bands/:bandName', passport.authenticate('jwt', {session: false}), (req
   });
 });
 
-//GET full list of genres
-/* app.get('/genres', passport.authenticate('jwt', {session: false}), (req, res) => {
-    Bands.find().populate ('Genre.Name')
-    .then((band) => {
-      res.status(201).json(band);
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send('Error: ' + err);
-    });
-  });*/
-
 
 //GET full list of users
 app.get('/users', passport.authenticate('jwt', {session: false}), (req, res) => {
@@ -274,7 +262,7 @@ app.post('/users',   [
         Firstname: req.body.FirstName,
         Lastname: req.body.LastName,
         Email: req.body.Email,
-        DOB: req.body.Birthday
+        DOB: req.body.DOB
       })
       .then((user) =>{res.status(201).json(user)})
       .catch((err) => {
