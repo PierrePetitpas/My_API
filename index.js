@@ -40,7 +40,7 @@ app.get('/', (req, res) => {
 
 
 //Get array of all bands
-app.get('/bands', passport.authenticate('jwt', {session: false}) ,(req, res) => {
+app.get('/bands',(req, res) => {
     Bands.find()
     .then((bands) => {
       res.status(201).json(bands);
