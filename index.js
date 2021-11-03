@@ -128,7 +128,7 @@ app.post('/bands',  [
           Name: req.body.Label.Name,
           Bio: req.body.Label.Bio,
           Creation: req.body.Label.Creation,
-          labelCountry: req.body.Label.Country
+          Country: req.body.Label.Country
         },
         Country: req.body.Country,
         Continent: req.body.Continent,
