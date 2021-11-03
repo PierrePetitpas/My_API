@@ -132,7 +132,7 @@ app.post('/bands',  [
         },
         Country: req.body.Country,
         Continent: req.body.Continent,
-        Creation: req.body.creation,
+        Creation: req.body.Creation,
         Imagepath: req.body.Imagepath,
         Active: req.body.Active
         })
