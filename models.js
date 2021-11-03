@@ -18,7 +18,7 @@ let bandSchema = mongoose.Schema({
     Country: String,
     Continent: String,
     Creation: Number,
-    Imagepath: String,
+    ImagePath: String,
     Active: Boolean
 });
 

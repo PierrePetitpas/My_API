@@ -133,7 +133,7 @@ app.post('/bands',  [
         Country: req.body.Country,
         Continent: req.body.Continent,
         Creation: req.body.Creation,
-        Imagepath: req.body.Imagepath,
+        ImagePath: req.body.ImagePath,
         Active: req.body.Active
         })
         .then((band) =>{res.status(201).json(band)})
