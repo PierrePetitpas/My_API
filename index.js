@@ -77,6 +77,18 @@ app.get('/users', passport.authenticate('jwt', {session: false}), (req, res) => 
   });
 });
 
+//GET info on one user
+app.get('/users/:username', passport.authenticate('jwt', {session: false}), (req, res) => {
+  Users.findOne({'user.Name': req.params.username})
+  .then((users) => {
+    res.status(201).json(users.Name);
+  })
+  .catch((err) => {
+    console.error(err);
+    res.status(500).send('Error: ' + err);
+  });
+});
+
   //GET a specific genre name information
   app.get('/genres/:genreName', passport.authenticate('jwt', {session: false}), (req, res) => {
     Bands.findOne( {'Genre.Name': req.params.genreName})
