@@ -79,7 +79,7 @@ app.get('/users', passport.authenticate('jwt', {session: false}), (req, res) => 
 
 //GET info on one user
 app.get('/users/:username', passport.authenticate('jwt', {session: false}), (req, res) => {
-  Users.findOne({'user.Username': req.params.username})
+  Users.findOne({Username: req.params.username})
   .then((users) => {
     res.status(201).json(users);
   })
@@ -272,8 +272,8 @@ app.post('/users',   [
       Users.create({
         Username: req.body.Username,
         Password: hashedPassword,
-        Firstname: req.body.FirstName,
-        Lastname: req.body.LastName,
+        Firstname: req.body.Firstname,
+        Lastname: req.body.Lastname,
         Email: req.body.Email,
         DOB: req.body.DOB
       })
